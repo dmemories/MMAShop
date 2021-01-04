@@ -343,7 +343,7 @@ ol {
   visibility: visible;
 }
 .header__top__left ul li ul {
-  background: #FFFFFF;
+  background: #181f1a;
   display: inline-block;
   padding: 2px 0;
   position: absolute;
@@ -1035,7 +1035,7 @@ ol {
   margin-bottom: 40px;
 }
 .product__item:hover .product__item__pic .product__label span {
-  background: #f08632;
+  background: #444444;
   color: #ffffff;
 }
 .product__item:hover .product__item__text .product__item__price {
@@ -3471,7 +3471,7 @@ ol {
     cursor: pointer;
   }
   .offcanvas__option ul li a {
-    color: #111111;
+    color: #FFFFFF;
   }
   .offcanvas__option ul li:hover ul {
     top: 24px;

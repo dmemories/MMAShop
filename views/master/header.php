@@ -14,24 +14,18 @@
         <?php include PATH_MVIEW . 'header_cart.php'; ?>
     </div>
     <div class="offcanvas__logo">
-        <a href="./index.html"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+        <a href="./index.php"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__option">
         <ul>
-            <li>USD <span class="arrow_carrot-down"></span>
+            <li>Register</li>
+            <li>
+                <a href="#">Login</a> <span class="arrow_carrot-down"></span>
                 <ul>
-                    <li>EUR</li>
-                    <li>USD</li>
+                    <li>Logout</li>
                 </ul>
             </li>
-            <li>ENG <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li>Spanish</li>
-                    <li>ENG</li>
-                </ul>
-            </li>
-            <li><a href="#">Login</a> <span class="arrow_carrot-down"></span></li>
         </ul>
     </div>
 </div>
@@ -46,17 +40,16 @@
                         <div class="header__top__left">
                             <ul>
                                 <li>Register</li>
-                                <li>ENG <span class="arrow_carrot-down"></span>
+                                <li>
+                                    <a href="#">Login</a> <span class="arrow_carrot-down"></span>
                                     <ul>
-                                        <li>Spanish</li>
-                                        <li>ENG</li>
+                                        <li>Logout</li>
                                     </ul>
                                 </li>
-                                <li><a href="#">Login</a> <span class="arrow_carrot-down"></span></li>
                             </ul>
                         </div>
                         <div class="header__logo">
-                            <a href="./index.html"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+                            <a href="./index.php"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">
@@ -76,7 +69,7 @@
             <div class="col-lg-12">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
+                        <li class="active"><a href="./index.php">Home</a></li>
                         <li><a href="#">Shop</a>
                             <ul class="dropdown">
                                 <li><a href="./shop-details.html">Shop Details</a></li>
@@ -88,7 +81,7 @@
                             </ul>
                         </li>
                         <li><a href="./shop.html">My Order</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="./blog.html">Cart</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                     </ul>
                 </nav>

@@ -80,11 +80,11 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-1.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Bag</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Dozen Cupcakes</a></h6>
+                            <h6><a href="#">Dozen Bags</a></h6>
                             <div class="product__item__price">$32.00</div>
                             <div class="cart_add">
                                 <a href="#">Add to cart</a>
@@ -96,7 +96,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-2.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Bag</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -112,7 +112,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-3.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Bag</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -128,7 +128,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-4.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>T-Shirt</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -144,7 +144,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-5.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Hat</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -160,7 +160,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-6.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>T-Shirt</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -176,7 +176,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-7.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Shoes</span>
                             </div>
                         </div>
                         <div class="product__item__text">
@@ -192,7 +192,7 @@
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<?=PATH_IMG;?>shop/product-8.jpg">
                             <div class="product__label">
-                                <span>Cupcake</span>
+                                <span>Bag</span>
                             </div>
                         </div>
                         <div class="product__item__text">
