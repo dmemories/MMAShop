@@ -460,10 +460,10 @@ ol {
 }
 /* XXXXXXXXXXXXXXXXXXX */
 .header__menu ul li.active a {
-  background: #f18730;
+  background: #5e5b59;
 }
 .header__menu ul li:hover a {
-  background: #f18730;
+  background: #5e5b59;
 }
 .header__menu ul li:hover .dropdown {
   top: 62px;
@@ -479,7 +479,7 @@ ol {
   left: 0;
   top: 82px;
   width: 150px;
-  background: #f18730;
+  background: #5e5b59;
   text-align: left;
   padding: 5px 0;
   z-index: 9;
@@ -3356,11 +3356,12 @@ ol {
   }
 }
 /* Wide Mobile = 480px */
+/* xxxxxxxxxxxxxxx */
 @media only screen and (max-width: 767px) {
   .canvas__open {
     display: block;
     font-size: 22px;
-    color: #111111;
+    color: #ffffff;
     height: 35px;
     width: 35px;
     line-height: 35px;
@@ -3452,7 +3453,7 @@ ol {
   .slicknav_nav a:hover {
     border-radius: 0;
     background: transparent;
-    color: #FFFFFF;
+    color: #f08632;
   }
 
   .slicknav_nav {
@@ -3461,7 +3462,7 @@ ol {
 
   .offcanvas__option ul li {
     font-size: 14px;
-    color: #111111;
+    color: #FFFFFF;
     list-style: none;
     display: inline-block;
     margin-right: 30px;
