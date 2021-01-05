@@ -1,9 +1,5 @@
 <?php
 
-	function getCurrentPath() {
-		return str_replace("\\", "/", dirname(__FILE__));
-	}
-
     // Main
     define('PATH_MODEL', 'models/');
     define('PATH_VIEW', 'views/');
@@ -15,21 +11,52 @@
     define('PATH_JS', PATH_PUBLIC . 'js/');
     define('PATH_IMG', PATH_PUBLIC . 'img/');
     
-    // Database
+	// Database
+	define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
-    define('DB_PASS', '1234');
-    define('DB_NAME', 'test');
+    define('DB_PASS', '');
+    define('DB_NAME', 'mma_shop');
 
 ?>
 
 
 <?php
 
-class Model {
-	function __construct() {
-		$this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+class DB extends PDO {
+
+	public function selectAll($sql, $bindArr = array(), $fetchMode = PDO::FETCH_ASSOC) {
+		$sth = $this->prepare($sql);
+		foreach ($bindArr as $key => $val) {
+			$sth->bindValue("$key", $val);
+		}
+		$sth->execute();
+		return $sth->fetchAll($fetchMode);
 	}
+
+	public function selectOne($sql, $bindArr = array(), $fetchMode = PDO::FETCH_ASSOC) {
+		$sth = $this->prepare($sql);
+		foreach ($bindArr as $key => $val) {
+			$sth->bindValue("$key", $val);
+		}
+		$sth->execute();
+		return $sth->fetch($fetchMode);
+	}
+	
+}
+
+
+
+class Model {
+
+	function __construct() {
+		try {
+			$this->db = new DB(DB_TYPE . ":dbname=". DB_NAME .";host=" . DB_HOST, DB_USER, DB_PASS);
+		} catch (PDOException $e) {
+			die('Connection failed : ') . $e->getMessage();
+		}
+	}
+
 }
 
 class View {
