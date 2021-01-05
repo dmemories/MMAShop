@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.MA Shop</title>
+    <link rel="icon" href="<?=PATH_IMG;?>icon.png" type = "image/x-icon"> 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="<?=PATH_CSS;?>bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>flaticon.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>barfiller.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>nice-select.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="<?=PATH_CSS;?>style.css" type="text/css">
+</head>
+<body>
+
+
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
@@ -69,8 +97,8 @@
             <div class="col-lg-12">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.php">Home</a></li>
-                        <li><a href="#">Shop</a>
+                        <li <?=(($this->pageName == "index") ? "class=\"active\"" : "");?>><a href="./home">Home</a></li>
+                        <li <?=(($this->pageName == "shop") ? "class=\"active\"" : "");?>><a href="./shop">Shop</a>
                             <ul class="dropdown">
                                 <li><a href="./shop-details.html">Shop Details</a></li>
                                 <li><a href="./shoping-cart.html">Shoping Cart</a></li>

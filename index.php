@@ -1,13 +1,17 @@
 <?php
 
+	function getCurrentPath() {
+		return str_replace("\\", "/", dirname(__FILE__));
+	}
+
     // Main
     define('PATH_MODEL', 'models/');
     define('PATH_VIEW', 'views/');
     define('PATH_CONTROLLER', 'controllers/');
     define('PATH_MVIEW', 'views/master/');
-
+	
     define('PATH_PUBLIC', 'public/');
-    define('PATH_CSS', PATH_PUBLIC . 'css/');
+	define('PATH_CSS', PATH_PUBLIC . 'css/');
     define('PATH_JS', PATH_PUBLIC . 'js/');
     define('PATH_IMG', PATH_PUBLIC . 'img/');
     
@@ -16,7 +20,6 @@
     define('DB_USER', 'root');
     define('DB_PASS', '1234');
     define('DB_NAME', 'test');
-    
 
 ?>
 
@@ -37,36 +40,35 @@ class View {
 		return $this;
 	}
 
-	public function getView($noInclude = true) {
-		if ($noInclude) {
-			require PATH_VIEW . $this->pageName . '.php';	
+	public function getView($includeAll = true) {
+		if ($includeAll) {
+			require PATH_MVIEW . 'header.php';
+			require PATH_VIEW . $this->pageName . '.php';
+			require PATH_MVIEW . 'footer.php';
 		}
 		else {
-			require PATH_VIEW . 'header.php';
 			require PATH_VIEW . $this->pageName . '.php';
-			require PATH_VIEW . 'footer.php';
 		}
 		return $this;
 	}
 }
 
 class Controller {
-	public $view;
-	public $model;
+	protected $view;
+	protected $model;
 
 	public function __construct() {
 		$this->view = new View();
 	}
 
 	public function setModel($modelName) {
-		$file = PATH_MODEL . $modelName . '.php';
-		if (file_exists($file)) {
-			require $file;
-			$modelName .= "Model";
-			$this->model = new $modelName;
+		$modelPath = PATH_MODEL . $modelName . '.php';
+		if (file_exists($modelPath)) {
+			require $modelPath;
+			$className = strtoupper($modelName[0]) . substr($modelName, 1) . "Model";
+			$this->model = new $className();
 		}
     }
-    
 
 }
 
@@ -78,7 +80,8 @@ class Router {
     
     public function __construct() {
         $this->setUrl();
-        $this->setController();
+		$this->loadContoller();
+		$this->controller->index();
        // $this->callFunction();
     }
     
@@ -90,26 +93,25 @@ class Router {
 		$this->url = explode('/', $this->url);
     }
 
-    private function loadContoller($controllerName) {
+    private function setContoller($controllerName) {
         $controllerPath = PATH_CONTROLLER . $controllerName . ".php";
         if (file_exists($controllerPath)) {
             require $controllerPath;
             $className = strtoupper($controllerName[0]) . substr($controllerName, 1) . "Controller";
-            $this->_controller = new $className();
-            $this->_controller->setModel($controllerName);
+            $this->controller = new $className();
+            $this->controller->setModel($controllerName);
             return true;
         }
         else {
             return false;
         }
-        
     }
     
-    private function setController() {
+    private function loadContoller() {
         $controllerName = (isset($this->url[0]) ? $this->url[0] : (string) null);
-        if ($this->loadContoller($controllerName) === false) {
+        if ($this->setContoller($controllerName) === false) {
             // Default
-            if ($this->loadContoller($this->defaultCtrName) === false) {
+            if ($this->setContoller($this->defaultCtrName) === false) {
                 exit("Invalid (" . $controllerName . ") Controller !");
             }
         }
