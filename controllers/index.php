@@ -2,9 +2,13 @@
 
     class IndexController extends Controller {
         
-        public function index() {
-            $this->view->setView('index')->getView();
+        public function __construct() {
+            $this->setView('index');
         }
+
+        public function index() {
+            $this->getView();
+        }   
 
     }
 

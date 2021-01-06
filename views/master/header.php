@@ -97,20 +97,20 @@
             <div class="col-lg-12">
                 <nav class="header__menu mobile-menu">
                     <ul>
-                        <li <?=(($this->pageName == "index") ? "class=\"active\"" : "");?>><a href="./home">Home</a></li>
-                        <li <?=(($this->pageName == "shop") ? "class=\"active\"" : "");?>><a href="./shop">Shop</a>
+                        <li <?=(($this->viewName == "index") ? "class=\"active\"" : "");?>><a href="<?=PATH_ROOT;?>home">Home</a></li>
+                        <li <?=(($this->viewName == "shop") ? "class=\"active\"" : "");?>><a href="<?=PATH_ROOT;?>shop">Shop</a>
                             <ul class="dropdown">
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                <li><a href="./checkout.html">Check Out</a></li>
-                                <li><a href="./wisslist.html">Wisslist</a></li>
-                                <li><a href="./Class.html">Class</a></li>
-                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                <li><a href="<?=PATH_ROOT;?>shop-details">Shop Details</a></li>
+                                <li><a href="<?=PATH_ROOT;?>shoping-cart">Shoping Cart</a></li>
+                                <li><a href="<?=PATH_ROOT;?>checkout">Check Out</a></li>
+                                <li><a href="<?=PATH_ROOT;?>wisslist">Wisslist</a></li>
+                                <li><a href="<?=PATH_ROOT;?>Class">Class</a></li>
+                                <li><a href="<?=PATH_ROOT;?>blog-details">Blog Details</a></li>
                             </ul>
                         </li>
-                        <li><a href="./shop.html">My Order</a></li>
-                        <li><a href="./blog.html">Cart</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="<?=PATH_ROOT;?>shop">My Order</a></li>
+                        <li><a href="<?=PATH_ROOT;?>blog">Cart</a></li>
+                        <li><a href="<?=PATH_ROOT;?>contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>

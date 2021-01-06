@@ -5,11 +5,14 @@
     define('PATH_VIEW', 'views/');
     define('PATH_CONTROLLER', 'controllers/');
     define('PATH_MVIEW', 'views/master/');
-	
-    define('PATH_PUBLIC', 'public/');
+
+	$strExp = explode("\\", __DIR__);
+	$dirName = $strExp[(sizeof($strExp) - 1)];
+	define('PATH_ROOT', '../../../../' . $dirName . '/');
+    define('PATH_PUBLIC', PATH_ROOT . 'public/');
 	define('PATH_CSS', PATH_PUBLIC . 'css/');
     define('PATH_JS', PATH_PUBLIC . 'js/');
-    define('PATH_IMG', PATH_PUBLIC . 'img/');
+    define('PATH_IMG',	 PATH_PUBLIC . 'img/');
     
 	// Database
 	define('DB_TYPE', 'mysql');
@@ -20,82 +23,67 @@
 
 ?>
 
-
 <?php
-
-class DB extends PDO {
-
-	public function selectAll($sql, $bindArr = array(), $fetchMode = PDO::FETCH_ASSOC) {
-		$sth = $this->prepare($sql);
-		foreach ($bindArr as $key => $val) {
-			$sth->bindValue("$key", $val);
-		}
-		$sth->execute();
-		return $sth->fetchAll($fetchMode);
-	}
-
-	public function selectOne($sql, $bindArr = array(), $fetchMode = PDO::FETCH_ASSOC) {
-		$sth = $this->prepare($sql);
-		foreach ($bindArr as $key => $val) {
-			$sth->bindValue("$key", $val);
-		}
-		$sth->execute();
-		return $sth->fetch($fetchMode);
-	}
-	
-}
-
-
 
 class Model {
 
-	function __construct() {
-		try {
-			$this->db = new DB(DB_TYPE . ":dbname=". DB_NAME .";host=" . DB_HOST, DB_USER, DB_PASS);
-		} catch (PDOException $e) {
-			die('Connection failed : ') . $e->getMessage();
-		}
+	public static $db;
+	public static $table;
+	public static $data;
+
+	public static function init() {
+		self::$db = new PDO(DB_TYPE . ":dbname=". DB_NAME .";host=" . DB_HOST, DB_USER, DB_PASS);
 	}
 
-}
+	// get("product_id, product_name", "product_id = :xxx", ["xxx" => $pid], ["product_id", "DESC"], PDO::FETCH_ASSOC)
+	public static function get($option = null) {
 
-class View {
-	private $pageName;
+		$sth = self::$db->prepare(
+			"SELECT " . (isset($option['field']) ? $option['field'] : "*") .
+			" FROM `". static::$table . "`" .
+			(isset($option['where']) ? "WHERE " . $option['where'] : (string) null) .
+			(isset($option['order']) ? "ORDER BY " . $option['order'][0] . " " . $option['order'][1] : (string) null) . ";"
+		);
+		
+		if (isset($option['bind'])) {
+			foreach ($option['bind'] as $key => $val) {
+				$key = ":" . str_replace(":", "", $key);
+				$sth->bindValue("{$key}", $val);
+			}
+		}
 
-	public function setView($viewName) {
-		$this->pageName = $viewName;
-		return $this;
+		$sth->execute();
+		return $sth->fetchAll((isset($option['fetch']) ? $option['fetch'] : PDO::FETCH_ASSOC));
 	}
 
-	public function getView($includeAll = true) {
-		if ($includeAll) {
-			require PATH_MVIEW . 'header.php';
-			require PATH_VIEW . $this->pageName . '.php';
-			require PATH_MVIEW . 'footer.php';
-		}
-		else {
-			require PATH_VIEW . $this->pageName . '.php';
-		}
-		return $this;
-	}
+
+
 }
 
 class Controller {
-	protected $view;
-	protected $model;
 
-	public function __construct() {
-		$this->view = new View();
+	private $viewName;
+
+	protected function loadModel($modelArr) {
+		foreach ($modelArr as $val) {
+			require PATH_MODEL . $val . ".php";
+		}
 	}
 
-	public function setModel($modelName) {
-		$modelPath = PATH_MODEL . $modelName . '.php';
-		if (file_exists($modelPath)) {
-			require $modelPath;
-			$className = strtoupper($modelName[0]) . substr($modelName, 1) . "Model";
-			$this->model = new $className();
+	protected function setView($viewName) {
+		$this->viewName = $viewName;
+	}
+
+	protected function getView($includeAll = true) {
+		if ($includeAll) {
+			require PATH_MVIEW . 'header.php';
+			require PATH_VIEW . $this->viewName . '.php';
+			require PATH_MVIEW . 'footer.php';
 		}
-    }
+		else {
+			require PATH_VIEW . $this->viewName . '.php';
+		}
+	}
 
 }
 
@@ -106,6 +94,7 @@ class Router {
     private $defaultCtrName = 'index';
     
     public function __construct() {
+		Model::init();
         $this->setUrl();
 		$this->loadContoller();
 		$this->controller->index();
@@ -126,7 +115,6 @@ class Router {
             require $controllerPath;
             $className = strtoupper($controllerName[0]) . substr($controllerName, 1) . "Controller";
             $this->controller = new $className();
-            $this->controller->setModel($controllerName);
             return true;
         }
         else {

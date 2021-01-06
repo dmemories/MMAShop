@@ -1,12 +1,3 @@
-<?php
-
-    
-    /*while ($data = mysqli_fetch_assoc($this->query)) {
-        echo $data['product_name'];
-    }*/
-
-?>
-
 <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
@@ -37,6 +28,7 @@
                             <form action="#">
                                 <select>
                                     <?php
+                                    
                                         foreach ($this->prodTypeData as $val) {
                                             echo "<option value=\"". $val['product_type_id'] ."\">". $val['type_name'] ."</option>";
                                         }
