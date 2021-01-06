@@ -28,35 +28,27 @@
 class Model {
 
 	public static $db;
-	public static $table;
-	public static $data;
 
 	public static function init() {
 		self::$db = new PDO(DB_TYPE . ":dbname=". DB_NAME .";host=" . DB_HOST, DB_USER, DB_PASS);
 	}
 
-	// get("product_id, product_name", "product_id = :xxx", ["xxx" => $pid], ["product_id", "DESC"], PDO::FETCH_ASSOC)
 	public static function get($option = null) {
-
 		$sth = self::$db->prepare(
 			"SELECT " . (isset($option['field']) ? $option['field'] : "*") .
 			" FROM `". static::$table . "`" .
 			(isset($option['where']) ? "WHERE " . $option['where'] : (string) null) .
 			(isset($option['order']) ? "ORDER BY " . $option['order'][0] . " " . $option['order'][1] : (string) null) . ";"
 		);
-		
 		if (isset($option['bind'])) {
 			foreach ($option['bind'] as $key => $val) {
 				$key = ":" . str_replace(":", "", $key);
 				$sth->bindValue("{$key}", $val);
 			}
 		}
-
 		$sth->execute();
 		return $sth->fetchAll((isset($option['fetch']) ? $option['fetch'] : PDO::FETCH_ASSOC));
 	}
-
-
 
 }
 
@@ -97,8 +89,7 @@ class Router {
 		Model::init();
         $this->setUrl();
 		$this->loadContoller();
-		$this->controller->index();
-       // $this->callFunction();
+		$this->callFunction();
     }
     
     private function setUrl() {
@@ -133,36 +124,36 @@ class Router {
 	}
 
 	private function callFunction() {
-		$length = count($this->_url);
-		if ($length > 1) {
-			if (!method_exists($this->_controller, $this->_url[1])) {
-				exit("Invalid Function (" . $this->_url[1] . ")");
-			}
+		$urlLength = sizeof($this->url);
+
+		if ($urlLength > 1 and !method_exists($this->controller, $this->url[1])) {
+			$this->controller->index();
+			return;
 		}
-		
-		switch ($length) {
+
+		switch ($urlLength) {
 			case 5:
 				//Controller->Method(Param1, Param2, Param3)
-				$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3], $this->_url[4]);
+				$this->controller->{$this->url[1]}($this->url[2], $this->url[3], $this->url[4]);
 				break;
 			
 			case 4:
 				//Controller->Method(Param1, Param2)
-				$this->_controller->{$this->_url[1]}($this->_url[2], $this->_url[3]);
+				$this->controller->{$this->url[1]}($this->url[2], $this->url[3]);
 				break;
 			
 			case 3:
 				//Controller->Method(Param1, Param2)
-				$this->_controller->{$this->_url[1]}($this->_url[2]);
+				$this->controller->{$this->url[1]}($this->url[2]);
 				break;
 			
 			case 2:
 				//Controller->Method(Param1, Param2)
-				$this->_controller->{$this->_url[1]}();
+				$this->controller->{$this->url[1]}();
 				break;
 			
 			default:
-				//$this->_controller->index();
+				$this->controller->index();
 				break;
 		}
 		
