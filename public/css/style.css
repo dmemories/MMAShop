@@ -308,12 +308,12 @@ ol {
   Header
 -----------------------*/
 .header {
-  background: #181f1a;
+  background: #000000;
 }
 
 .header__top {
   position: relative;
-  background: #181f1a;
+  background: #000000;
 }
 
 .header__top__inner {

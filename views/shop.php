@@ -1,3 +1,9 @@
+<?php
+    
+    echo var_dump($this->prodData);
+
+?>
+
 <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
