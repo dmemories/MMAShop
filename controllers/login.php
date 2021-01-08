@@ -89,7 +89,7 @@
             }
             else {
                 if (empty($_GET['code'])) { $this->defaultLogin(); }
-                else { $this->googleLogin(); }
+                 else { $this->googleLogin(); }
             }
             $this->getView();
         }
