@@ -27,8 +27,15 @@
               </div>
               <form action="login" method="post">
                 <div class="form-group first">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" name="username">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" name="email"
+                  <?php
+                    if (isset($this->tempEmail)) {
+                      echo "value=\"". $this->tempEmail ."\"";
+                      unset($this->tempEmail);
+                    }
+                  ?>
+                  >
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
@@ -53,7 +60,7 @@
                   <a href="#" class="btn btn-block py-2 btn-facebook">
                     <span class="icon-facebook mr-3"></span> Login with facebook
                   </a>
-                  <a href="#" class="btn btn-block py-2 btn-google"><span class="icon-google mr-3"></span> Login with Google</a>
+                  <a href="<?=GoogleAPI::$client->createAuthUrl();?>" class="btn btn-block py-2 btn-google"><span class="icon-google mr-3"></span> Login with Google</a>
                 </div>
               </form>
             </div>
@@ -64,6 +71,20 @@
 
     
   </div>
+  <script>
+
+    function init() {
+      let userEle = document.getElementsByName("username")[0];
+      if (userEle.value.length > 0) {
+        document.getElementsByName("password")[0].focus();
+      }
+      else {
+        userEle.focus();
+      }
+    }
+    init();
+        
+  </script>
 
 <?php
 
@@ -83,7 +104,6 @@
       </script>";
   }
   else if (isset($this->sweetAlert)) {
-    echo "D";
     echo "<script>
     Swal.fire(
       '". $this->sweetAlert['title'] ."',

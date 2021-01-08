@@ -23,15 +23,7 @@
     define('DB_NAME', 'mma_shop');
     
     // Auth
-    define('AUTH_USER', 'username');
-	
-	// Google ApiClient
-	/*require_once 'vendor/autoload.php';
-    $gclient = new Google_Client();
-    $gclient->setClientId('156691773247-fm3ca4uok2qj7nat41kp9n0h1kntcmgv.apps.googleusercontent.com');
-    $gclient->setClientSecret('YdOCrMuZegbUo6iJMhGpNH2H');
-    $gclient->setRedirectUri('http://127.0.0.1/MMAShop');
-    $gclient->addScope('email');
-    $gclient->addScope('profile');
-*/
+    define('AUTH_NAME', 'name');
+    define('AUTH_EMAIL', 'email');
+
 ?>

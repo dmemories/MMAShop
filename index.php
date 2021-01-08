@@ -3,6 +3,21 @@
 session_start();
 require_once 'config.php';
 require_once PATH_LIB . 'auth.php';
+require_once 'vendor/autoload.php'; // Google API
+
+class GoogleAPI {
+
+	public static $client;
+	public static function init() {
+		self::$client = new Google_Client();
+		self::$client->setClientId('156691773247-fm3ca4uok2qj7nat41kp9n0h1kntcmgv.apps.googleusercontent.com');
+		self::$client->setClientSecret('YdOCrMuZegbUo6iJMhGpNH2H');
+		self::$client->setRedirectUri('http://127.0.0.1/MMAShop/login');
+		self::$client->addScope('email');
+		self::$client->addScope('profile');
+	}
+	
+}
 
 class Model {
 
@@ -65,7 +80,6 @@ class Router {
     private $defaultCtrName = 'index';
     
     public function __construct() {
-		Model::init();
         $this->setUrl();
 		$this->loadContoller();
 		$this->callFunction();
@@ -146,6 +160,8 @@ class Router {
 
 }
 
+GoogleAPI::init();
+Model::init();
 $init = new Router();
 
 ?>

@@ -4,23 +4,23 @@
 
         public static $table = "member";
 
-        public static function login($username, $password) {
-            if (!preg_match("/^[a-z0-9]{4,20}+$/i", $username)) {
-                return ['error' => "Username ของคุณต้องเป็นตัวอักษร a-z หรือ 0-9 และมีความยาว 4-20 ตัวอักษร"];
+        public static function login($email, $password) {
+            if (!preg_match("/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/i", $email)) {
+                return ['warning' => "Invalid email format !"];
             }
             else if (!preg_match("/^[a-z0-9]{4,20}+$/i", $password)) {
-                return ['error' => "Password ของคุณต้องเป็นตัวอักษร a-z หรือ 0-9 และมีความยาว 4-20 ตัวอักษร"];
+                return ['warning' => "Your password must be a-z or 0-9 and has 4-20 characters."];
             }
             $result = self::get([
-                'where' => "`username` = :user AND `password` = :pass",
+                'where' => "`email` = :email AND `password` = :pass",
                 'bind' => [
-                    ':user' => $username,
+                    ':email' => $email,
                     ':pass' => $password
                 ]
             ]);
             switch (sizeof($result)) {
-                case 0: return ['warning' => "Invalid username or password !"];
-                case 1: return $result[0]['username'];
+                case 0: return ['warning' => "Invalid email or password !"];
+                case 1: return ['name' => $result[0]['name'], 'email' => $result[0]['email']];
                 case 2: return ['error' => "login error #01"];
             }
         }
