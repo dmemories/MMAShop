@@ -69,7 +69,12 @@ class Router {
         $this->setUrl();
 		$this->loadContoller();
 		$this->callFunction();
-    }
+	}
+	
+	public static function redirect($url) {	
+		header('Location: ' . $url);
+        exit;
+	}
     
     private function setUrl() {
 		$this->url = isset($_GET['url']) ? $_GET['url'] : null;

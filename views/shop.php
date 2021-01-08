@@ -32,7 +32,7 @@
                     <div class="col-lg-7 col-md-7">
                         <div class="shop__option__search">
                             <form action="#">
-                                <select>
+                                <select class="mySelect">
                                     <?php
                                     
                                         foreach ($this->prodTypeData as $val) {
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-lg-5 col-md-5">
                         <div class="shop__option__right">
-                            <select>
+                            <select class="mySelect">
                                 <option value="">Price</option>
                                 <option value="">Name</option>
                             </select>

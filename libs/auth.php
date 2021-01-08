@@ -15,7 +15,10 @@
         public static function login($username, $password) {
             $result = Member::login($username, $password);
             if (isset($result['error'])) {
-                return $result['error'];
+                return ['error' => $result['error']];
+            }
+            else if (isset($result['warning'])) {
+                return ['warning' => $result['warning']];
             }
             else {
                 $_SESSION[AUTH_USER] = $result;

@@ -18,7 +18,11 @@
                     ':pass' => $password
                 ]
             ]);
-            return ((sizeof($result) > 1) ? ['error' => "login error #01"] : $result[0]['username']);
+            switch (sizeof($result)) {
+                case 0: return ['warning' => "Invalid username or password !"];
+                case 1: return $result[0]['username'];
+                case 2: return ['error' => "login error #01"];
+            }
         }
 
 

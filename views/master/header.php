@@ -22,6 +22,11 @@
     <link rel="stylesheet" href="<?=PATH_CSS;?>owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="<?=PATH_CSS;?>slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="<?=PATH_CSS;?>style.css" type="text/css">
+
+    <!-- JS -->
+    <script src="<?=PATH_JS;?>sweetalert2@10.js"></script>
+    <script src="<?=PATH_JS;?>jquery-3.3.1.min.js"></script>
+    <script src="<?=PATH_JS;?>jquery.nice-select.min.js"></script>
 </head>
 <body>
 

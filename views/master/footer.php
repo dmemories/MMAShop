@@ -27,13 +27,15 @@
 </body>
 
 <!-- Js Plugins -->
-<script src="<?=PATH_JS;?>jquery-3.3.1.min.js"></script>
 <script src="<?=PATH_JS;?>bootstrap.min.js"></script>
-<script src="<?=PATH_JS;?>jquery.nice-select.min.js"></script>
 <script src="<?=PATH_JS;?>jquery.barfiller.js"></script>
 <script src="<?=PATH_JS;?>jquery.magnific-popup.min.js"></script>
 <script src="<?=PATH_JS;?>jquery.slicknav.js"></script>
 <script src="<?=PATH_JS;?>owl.carousel.min.js"></script>
 <script src="<?=PATH_JS;?>jquery.nicescroll.min.js"></script>
 <script src="<?=PATH_JS;?>main.js"></script>
+<script>
+
+</script>
+
 </html>

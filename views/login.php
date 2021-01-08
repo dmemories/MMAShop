@@ -25,14 +25,14 @@
               <div class="text-center mb-5">
                 <h3 class="text-uppercase text-white"><strong>M-MA</strong></h3>
               </div>
-              <form action="#" method="post">
+              <form action="login" method="post">
                 <div class="form-group first">
                   <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username">
+                  <input type="text" class="form-control" name="username">
                 </div>
                 <div class="form-group last mb-3">
                   <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password">
+                  <input type="password" class="form-control" name="password">
                 </div>
                 
                 <div class="d-sm-flex mb-5 align-items-center">
@@ -64,3 +64,33 @@
 
     
   </div>
+
+<?php
+
+  if (isset($this->sweetRefresh)) {
+    echo "<script>
+      Swal.fire({
+        title: \"". $this->sweetRefresh[0] ."\",
+        text: \"". $this->sweetRefresh[1] ."\",
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.reload();
+        }
+      })
+      </script>";
+  }
+  else if (isset($this->sweetAlert)) {
+    echo "D";
+    echo "<script>
+    Swal.fire(
+      '". $this->sweetAlert['title'] ."',
+      '". $this->sweetAlert['text'] ."',
+      '". $this->sweetAlert['type'] ."'
+    )
+    </script>";
+  }
+
+?>
