@@ -44,6 +44,22 @@ class Model {
 		return $sth->fetchAll((isset($option['fetch']) ? $option['fetch'] : PDO::FETCH_ASSOC));
 	}
 
+	public static function add($option = null) {
+		$sth = self::$db->prepare(
+			"INSERT INTO `" . static::$table . "` " .
+			(isset($option['field']) ? "(". $option['field'] .")" : (string) null) . " " .
+			"VALUES (" . $option['value'] . ")" .
+			(isset($option['where']) ? "WHERE " . $option['where'] : (string) null) . ";"
+		);
+		if (isset($option['bind'])) {
+			foreach ($option['bind'] as $key => $val) {
+				$key = ":" . str_replace(":", "", $key);
+				$sth->bindValue("{$key}", $val);
+			}
+		}
+		$sth->execute();
+	}
+
 }
 
 class Controller {

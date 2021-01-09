@@ -26,4 +26,8 @@
     define('AUTH_NAME', 'name');
     define('AUTH_EMAIL', 'email');
 
+    // Member Group
+    define('MEM_DEFAULT', 1);
+    define('MEM_GOOGLE', 2);
+
 ?>

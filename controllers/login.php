@@ -24,7 +24,7 @@
                 //Get user profile data from google
                 $data = $google_service->userinfo->get();
 
-                Auth::googleLogin($data['given_name'], $data['email']);
+                Auth::googleLogin($data);
                 $this->sweetRefresh = ["Welcome " . Auth::getName(), "Login Successfully !"];
 
                 //Below you can find Get profile data and store into $_SESSION variable

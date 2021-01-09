@@ -1,7 +1,6 @@
 <?php
 
     class Member extends Model {
-
         public static $table = "member";
 
         public static function login($email, $password) {
@@ -26,21 +25,50 @@
         }
 
 
-        /*$query = $conn->prepare("SELECT account_id, userid FROM `login` WHERE userid=? AND user_pass=?;");
-		$query->bind_param("ss", $id, $pass);
-		$query->execute();
-		$result = $query->get_result();
-		$query->close();
-		if ($result->num_rows == 1) {
-            $data = $result->fetch_assoc();
-			$_SESSION['accid'] = $data['account_id'];
-			$_SESSION['gameid'] = $data['userid'];
-			echo "1";
-		}
-		else {
-            echo "ID หรือ Password ผ่านไม่ถูกต้อง";
-		}*/
+        public static function register($data, $regisGroup) {
+            $skipPass = true;
+            switch ($regisGroup) {
+                // MMA Member
+                case MEM_DEFAULT :
+                        $allKey = ['email', 'password', 'fullname', 'tel', 'address', 'province', 'tambon', 'postcode']; break;
+                        $skipPass = false;
+                // Google Member
+                case MEM_GOOGLE : $allKey = ['email', 'fullname', 'tel', 'address', 'province', 'tambon', 'postcode']; break;
+                // Unknown
+                default : return ['erorr' => "Invalid group [". $regisGroup ."] !"]; break;
+            }
 
+            foreach ($allKey as $key) {
+                if (!isset($data[$key])) {
+                    echo ucwords($key) . " is invalid !";
+                    return ['error' => ucwords($key) . " is invalid !"];
+                }
+                else { $$key = $data[$key]; }
+            }
+            
+            if (!preg_match("/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/i", $email)) {
+                return ['warning' => "Invalid email format !"];
+            }
+            // MMA Member
+            if (($skipPass === false) && (!preg_match("/^[a-z0-9]{4,23}+$/i", $password))) {
+                return ['warning' => "Your password should be A-Z or 0-9 and has 4-23 characters !"];
+            }
+
+            $result = self::add([
+                'field' => "member_id, member_group_id, member_level, email, fullname, tel, address, province, tambon, postcode",
+                'value' => "NULL, :mgid, 0, :email, :fname, :tel, :addr, :prov, :tambon, :pcode",
+                'bind' => [
+                    ':mgid' => $regisGroup,
+                    ':email' => $email,
+                    ':fname' => $fullname,
+                    ':tel' => $tel,
+                    ':addr' => $address,
+                    ':prov' => $province,
+                    ':tambon' => $tambon,
+                    ':pcode' => $postcode
+                ]
+            ]);
+        }
     }
 
 ?>

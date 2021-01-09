@@ -31,9 +31,40 @@
             }
         }
 
-        public static function googleLogin($name, $email) {
-            $_SESSION[AUTH_NAME] = $name;
+        public static function googleLogin($data) {
+            $fullname = $data['given_name'] . " " . $data['family_name'];
+            $email = $data['email'];
+
+            $_SESSION[AUTH_NAME] = $fullname;
             $_SESSION[AUTH_EMAIL] = $email;
+            $result = Member::get([
+                'where' => "`email` = :email AND `member_group_id` = :mgroup",
+                'bind' => [
+                    ':email' => $email,
+                    ':mgroup' => MEM_GOOGLE
+                ]
+            ]);
+
+            // First Login with Google
+            if (sizeof($result) < 1) {
+                Member::register([
+                    'email' => $email,
+                    'fullname' => $fullname,
+                    'tel' => '',
+                    'address' => '',
+                    'province' => '',
+                    'tambon' => '',
+                    'postcode' => ''
+                    ], MEM_GOOGLE
+                );
+                
+            }
+            if (isset($result['error'])) {
+                return ['error' => $result['error']];
+            }
+            else if (isset($result['warning'])) {
+                return ['warning' => $result['warning']];
+            }
             return true;
         }
 
