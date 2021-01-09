@@ -74,43 +74,14 @@
   <script>
 
     function init() {
-      let userEle = document.getElementsByName("username")[0];
-      if (userEle.value.length > 0) {
+      let emailEle = document.getElementsByName("email")[0];
+      if (emailEle.value.length > 0) {
         document.getElementsByName("password")[0].focus();
       }
       else {
-        userEle.focus();
+        emailEle.focus();
       }
     }
     init();
         
   </script>
-
-<?php
-
-  if (isset($this->sweetRefresh)) {
-    echo "<script>
-      Swal.fire({
-        title: \"". $this->sweetRefresh[0] ."\",
-        text: \"". $this->sweetRefresh[1] ."\",
-        icon: 'success',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          location.reload();
-        }
-      })
-      </script>";
-  }
-  else if (isset($this->sweetAlert)) {
-    echo "<script>
-    Swal.fire(
-      '". $this->sweetAlert['title'] ."',
-      '". $this->sweetAlert['text'] ."',
-      '". $this->sweetAlert['type'] ."'
-    )
-    </script>";
-  }
-
-?>

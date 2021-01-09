@@ -62,9 +62,55 @@ class Model {
 
 }
 
+class View {
+
+	public $viewName;
+	public $sweetAlert;
+
+	public function renderFull() {
+		//$this->setAlertWarning( "D" , "X");
+		require PATH_MVIEW . 'header.php';
+		require PATH_VIEW . $this->viewName . '.php';
+		require PATH_MVIEW . 'sweetalert.php';
+		require PATH_MVIEW . 'footer.php';
+	}
+
+	public function renderOne() {
+		require PATH_VIEW . $this->viewName . '.php';
+	}
+
+	public function setAlertWarning($title, $text) {
+		$this->sweetAlert = [
+			"type" => "warning",
+			"title" => $title,
+			"text" => $text,
+			"refresh" => false
+		];
+	}
+
+	public function setAlertError($title, $text) {
+		$this->sweetAlert = [
+			"type" => "error",
+			"title" => $title,
+			"text" => $text,
+			"refresh" => false
+		];
+	}
+
+	public function setAlertRefresh($title, $text, $type = "success") {
+		$this->sweetAlert = [
+			"type" => $type,
+			"title" => $title,
+			"text" => $text,
+			"refresh" => true
+		];
+	}
+	
+}
+
 class Controller {
 
-	private $viewName;
+	public $view;
 
 	protected function loadModel($modelArr) {
 		foreach ($modelArr as $val) {
@@ -73,18 +119,17 @@ class Controller {
 	}
 
 	protected function setView($viewName) {
-		$this->viewName = $viewName;
+		if (!isset($this->view)) {
+			$this->view = new View();
+		}
+		$this->view->viewName = $viewName;
 	}
 
-	protected function getView($includeAll = true) {
-		if ($includeAll) {
-			require PATH_MVIEW . 'header.php';
-			require PATH_VIEW . $this->viewName . '.php';
-			require PATH_MVIEW . 'footer.php';
-		}
-		else {
-			require PATH_VIEW . $this->viewName . '.php';
-		}
+	protected function getView($fullRender = true) {
+		if ($fullRender)
+			$this->view->renderFull();
+		else
+			$this->view->renderOne();
 	}
 
 }
