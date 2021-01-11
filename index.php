@@ -3,7 +3,7 @@
 session_start();
 require_once 'config.php';
 require_once PATH_LIB . 'auth.php';
-require_once 'vendor/autoload.php'; // Google API
+require_once 'vendor_google/autoload.php'; // Google API
 
 class GoogleAPI {
 

@@ -25,6 +25,7 @@
     // Auth
     define('AUTH_NAME', 'name');
     define('AUTH_EMAIL', 'email');
+    define('AUTH_TYPE', 'memberType');
 
     // Member Group
     define('MEM_DEFAULT', 1);

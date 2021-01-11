@@ -27,6 +27,7 @@
             else {
                 $_SESSION[AUTH_NAME] = $result['name'];
                 $_SESSION[AUTH_EMAIL] = $result['email'];
+                $_SESSION[AUTH_TYPE] = MEM_DEFAULT;
                 return true;
             }
         }
@@ -37,6 +38,7 @@
 
             $_SESSION[AUTH_NAME] = $fullname;
             $_SESSION[AUTH_EMAIL] = $email;
+            $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
             $result = Member::get([
                 'where' => "`email` = :email AND `member_group_id` = :mgroup",
                 'bind' => [
@@ -72,6 +74,7 @@
             if (self::check()) {
                 unset($_SESSION[AUTH_NAME]);
                 unset($_SESSION[AUTH_EMAIL]);
+                unset($_SESSION[AUTH_TYPE]);
                 GoogleAPI::$client->revokeToken();
             }
         }
