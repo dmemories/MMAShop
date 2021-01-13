@@ -15,8 +15,10 @@
   
 
 ?>
+
 <link rel="stylesheet" href="<?=PATH_CSS;?>login_style.css" type="text/css">
-  <div class="myContents">
+<form action="#register" method="post">
+<div class="myContents">
   <div class="d-md-flex myFont" style="opacity: 1.0;">
       <div class="container">
         <div class="row align-items-center justify-content-center">
@@ -27,7 +29,7 @@
               </div>
               <form action="login" method="post">
                 <div class="form-group first">
-                  <label for="email">Email</label>
+                  <label>Email</label>
                   <input type="email" class="form-control" name="email"
                   <?php
                     if (isset($this->tempEmail)) {
@@ -35,32 +37,27 @@
                       unset($this->tempEmail);
                     }
                   ?>
-                  >
+                  required>
                 </div>
                 <div class="form-group last mb-3">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" name="password">
+                  <label>Password</label>
+                  <input type="password" class="form-control" name="password" required>
                 </div>
-                
-                <div class="d-sm-flex mb-5 align-items-center">
-                  <!--<label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
-                    <input type="checkbox" checked="checked"/>
-                    <div class="control__indicator"></div>
-                  </label>
-                  -->
-                  <span class="ml-auto"><a href="#" class="forgot-pass myFont">Forgot Password</a></span> 
+                <div class="form-group last mb-3">
+                  <label>Full-Name</label>
+                  <input type="text" class="form-control" name="fullname">
                 </div>
-
-                <input type="submit" value="Log In" class="btn btn-block py-2 btn-primary">
-
-                <span class="text-center my-3 d-block text-white">or</span>
-                
-                
-                <div class="">
-                  <a href="#" class="btn btn-block py-2 btn-facebook">
-                    <span class="icon-facebook mr-3"></span> Login with facebook
-                  </a>
-                  <a href="<?=GoogleAPI::$client->createAuthUrl();?>" class="btn btn-block py-2 btn-google"><span class="icon-google mr-3"></span> Login with Google</a>
+                <div class="form-group last mb-3">
+                  <label>Mobile Number</label>
+                  <input type="text" class="form-control" name="tel">
+                </div>
+                <div class="form-group last mb-3">
+                  <label>Address</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="107" style="resize: none;"></textarea>
+                </div>
+ 
+                <div class="text-center">
+                  <input type="submit" class="btn btn-success">
                 </div>
               </form>
             </div>
@@ -68,20 +65,19 @@
         </div>
       </div>
     </div>
-
-    
   </div>
-  <script>
+</form>
+<script>
 
-    function init() {
-      let emailEle = document.getElementsByName("email")[0];
-      if (emailEle.value.length > 0) {
-        document.getElementsByName("password")[0].focus();
-      }
-      else {
-        emailEle.focus();
-      }
+  function init() {
+    let emailEle = document.getElementsByName("email")[0];
+    if (emailEle.value.length > 0) {
+      document.getElementsByName("password")[0].focus();
     }
-    init();
+    else {
+      emailEle.focus();
+    }
+  }
+  init();
         
-  </script>
+</script>
