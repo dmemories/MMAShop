@@ -40,7 +40,6 @@
 
             foreach ($allKey as $key) {
                 if (!isset($data[$key])) {
-                    echo ucwords($key) . " is invalid !";
                     return ['error' => ucwords($key) . " is invalid !"];
                 }
                 else { $$key = $data[$key]; }
@@ -72,18 +71,35 @@
             if (sizeof($result) > 0) {
                 return ['warning' => "This email has already register !"];
             }
+            
 
-            $result = self::add([
-                'field' => "member_id, member_group_id, member_level, email, fullname, tel, address",
-                'value' => "NULL, :mgid, 0, :email, :fname, :tel, :addr",
-                'bind' => [
-                    ':mgid' => $regisGroup,
-                    ':email' => $email,
-                    ':fname' => $fullname,
-                    ':tel' => $tel,
-                    ':addr' => $address
-                ]
-            ]);
+            if ($regisGroup == MEM_DEFAULT) {
+                $result = self::add([
+                    'field' => "member_id, member_group_id, member_level, email, password, fullname, tel, address",
+                    'value' => "NULL, :mgid, 0, :email, :password, :fname, :tel, :addr",
+                    'bind' => [
+                        ':mgid' => $regisGroup,
+                        ':email' => $email,
+                        ':password' => $password,
+                        ':fname' => $fullname,
+                        ':tel' => $tel,
+                        ':addr' => $address
+                    ]
+                ]);
+            }
+            else {
+                $result = self::add([
+                    'field' => "member_id, member_group_id, member_level, email, fullname, tel, address",
+                    'value' => "NULL, :mgid, 0, :email, :fname, :tel, :addr",
+                    'bind' => [
+                        ':mgid' => $regisGroup,
+                        ':email' => $email,
+                        ':fname' => $fullname,
+                        ':tel' => $tel,
+                        ':addr' => $address
+                    ]
+                ]);
+            }
             return (($result) ? true : ['error' => "System Error, please contact Admin !"]);
         }
     }
