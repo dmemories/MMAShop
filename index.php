@@ -57,7 +57,7 @@ class Model {
 				$sth->bindValue("{$key}", $val);
 			}
 		}
-		$sth->execute();
+		return $sth->execute();
 	}
 
 }
@@ -84,7 +84,6 @@ class View {
 			"type" => "warning",
 			"title" => $title,
 			"text" => $text,
-			"refresh" => false
 		];
 	}
 
@@ -93,7 +92,6 @@ class View {
 			"type" => "error",
 			"title" => $title,
 			"text" => $text,
-			"refresh" => false
 		];
 	}
 
@@ -103,6 +101,15 @@ class View {
 			"title" => $title,
 			"text" => $text,
 			"refresh" => true
+		];
+	}
+
+	public function setAlertHref($title, $text, $type = "success") {
+		$this->sweetAlert = [
+			"type" => $type,
+			"title" => $title,
+			"text" => $text,
+			"href" => true
 		];
 	}
 	

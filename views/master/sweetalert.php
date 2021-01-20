@@ -2,7 +2,7 @@
 
   if (isset($this->sweetAlert)) {
 
-    if ($this->sweetAlert['refresh']) {
+    if (isset($this->sweetAlert['refresh'])) {
         echo "<script>
             Swal.fire({
                 title: \"". $this->sweetAlert['title'] ."\",
@@ -17,6 +17,21 @@
             })
             </script>";
     }
+    else if (isset($this->sweetAlert['href'])) {
+      echo "<script>
+          Swal.fire({
+              title: \"". $this->sweetAlert['title'] ."\",
+              text: \"". $this->sweetAlert['text'] ."\",
+              icon: \"". $this->sweetAlert['type'] ."\",
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  location.href = 'login';
+              }
+          })
+          </script>";
+  }
     else {
             echo "<script>
             Swal.fire(

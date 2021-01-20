@@ -15,7 +15,7 @@
         public static function getEmail() {
             return $_SESSION[AUTH_EMAIL];
         }
-
+        
         public static function login($email, $password) {
             $result = Member::login($email, $password);
             if (isset($result['error'])) {
@@ -53,10 +53,7 @@
                     'email' => $email,
                     'fullname' => $fullname,
                     'tel' => '',
-                    'address' => '',
-                    'province' => '',
-                    'tambon' => '',
-                    'postcode' => ''
+                    'address' => ''
                     ], MEM_GOOGLE
                 );
                 
