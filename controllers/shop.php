@@ -9,7 +9,9 @@
         }
         
         public function index() {
-            $this->view->prodData = Product::get();
+            $this->view->prodData = Product::get([
+                'join' => ['product_type, product_type_id', 'product_color, product_color_id']
+            ]);
             $this->getView();
         }
 
@@ -18,7 +20,10 @@
                 $this->view->prodData = Product::get();
             }
             else {
-                $this->view->prodData = Product::get(['where' => 'product_id = 1']);
+                $this->view->prodData = Product::get([
+                    'where' => 'product_id = 1',
+                    'join' => ['product_type', 'product_type_id']
+                ]);
             }
             $this->getView();
         }

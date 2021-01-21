@@ -14,7 +14,8 @@
 	define('PATH_CSS', PATH_PUBLIC . 'css/');
     define('PATH_JS', PATH_PUBLIC . 'js/');
     define('PATH_IMG',	 PATH_PUBLIC . 'images/');
-    
+    define('PATH_SHOP',	 PATH_IMG . 'shop/');
+
 	// Database
 	define('DB_TYPE', 'mysql');
     define('DB_HOST', 'localhost');
