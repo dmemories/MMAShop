@@ -25,25 +25,28 @@
                 <div class="row">
                     <div class="col-lg-7 col-md-7">
                         <div class="shop__option__search">
-                            <form action="#">
-                                <select class="mySelect">
+                            <form action="" onsubmit="return loadContent();">
+                                <select class="mySelect" id="productType" onchange="loadContent();">
+                                    <option value="">All</option>
                                     <?php
                                     
                                         foreach ($this->prodTypeData as $val) {
                                             echo "<option value=\"". $val['product_type_id'] ."\">". ucfirst($val['type_name']) ."</option>";
                                         }
+
                                     ?>
                                 </select>
-                                <input type="text" placeholder="Search">
+                                <input type="text" id="productName" placeholder="Search">
                                 <button type="submit"><i class="fa fa-search"></i></button>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-5">
                         <div class="shop__option__right">
-                            <select class="mySelect">
-                                <option value="">Price</option>
-                                <option value="">Name</option>
+                            Sort By :
+                            <select class="mySelect" id="productSort" onchange="loadContent();">
+                                <option value="product_name">Name</option>
+                                <option value="product_price">Price</option>
                             </select>
                         </div>
                     </div>
@@ -52,33 +55,8 @@
 
 <!-- PRODUCT --------------------------------------------------->
 
-            <div class="row">
-                <?php
-
-                    $totalProd = 0;
-                    foreach ($this->prodData as $key => $val) {
-                        $totalProd++;
-                        echo "
-                        <div class=\"col-lg-3 col-md-6 col-sm-6\">
-                            <div class=\"product__item\">
-                                <div class=\"product__item__pic set-bg\" data-setbg=\"". PATH_SHOP . $val['type_name'] . "/" . $val['product_img'] ."\">
-                                    <div class=\"product__label\">
-                                        <span>". $val['type_name'] ."</span>
-                                    </div>
-                                </div>
-                                <div class=\"product__item__text\">
-                                    <h6><a href=\"#\">". $val['product_name'] ."</a></h6>
-                                    <div class=\"product__item__price\">฿". $val['product_price'] ."</div>
-                                    <div class=\"cart_add\">
-                                        <a href=\"#\">Add to cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        ";
-                    }
-
-                ?>
+            <div class="row" id="productContent">
+                
             </div>
             
 <!-------------------------------------------------------------->
@@ -97,7 +75,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="shop__last__text">
                             <!--<p>Showing 1-9 of 9 results</p>-->
-                            <p>Showing <?=$totalProd;?> results</p>
+                            <p>Showing <x id="productTotal"></x> results</p>
                         </div>
                     </div>
                 </div>
@@ -105,3 +83,21 @@
         </div>
     </section>
     <!-- Shop Section End -->
+
+<script type="text/javascript">
+    
+    function loadContent() {
+        let type = $("#productType").val();
+        let name = $("#productName").val();
+        let sort = $("#productSort").val();
+
+        if (sort == "") sort = "name";
+        
+        $.get("services/getproduct.php?type=" + type + "&name=" + name + "&order=" + sort, function(data) {
+            $("#productContent").html(data);
+        });
+        return false;
+    }
+    loadContent();
+
+</script>
