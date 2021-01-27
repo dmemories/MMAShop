@@ -28,16 +28,20 @@
         echo "
         <div class=\"col-lg-3 col-md-6 col-sm-6\">
             <div class=\"product__item\">
-                <div class=\"product__item__pic set-bg\" style=\"background-image: url('../". PATH_SHOP . $val['type_name'] . "/" . $val['product_img'] ."')\">
-                    <div class=\"product__label\">
-                        <span>". $val['type_name'] ."</span>
+                <a href=\"#\">
+                    <div class=\"product__item__pic set-bg\" style=\"cursor: pointer; background-image: url('../". PATH_SHOP . $val['type_name'] . "/" . $val['product_img'] ."')\">
+                        <div class=\"product__label\">
+                            <span>". $val['type_name'] ."</span>
+                        </div>
                     </div>
-                </div>
+                    </a>
                 <div class=\"product__item__text\">
                     <h6><a href=\"#\">". $val['product_name'] ."</a></h6>
-                    <div class=\"product__item__price\">฿". $val['product_price'] ."</div>
-                    <div class=\"cart_add\">
-                        <a href=\"#\">Add to cart</a>
+                    <div class='product_itembuy'>
+                        <div class=\"product__item__price\">฿". $val['product_price'] ."</div>
+                        <div class=\"cart_add\">
+                            <a href=\"#\">Add to cart</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1038,16 +1038,17 @@ ol {
   background: #444444;
   color: #ffffff;
 }
-.product__item:hover .product__item__text .product__item__price {
+/*
+.product_itembuy:hover .product__item__price{
   opacity: 0;
   visibility: hidden;
 }
-.product__item:hover .product__item__text .cart_add {
+.product_itembuy:hover .cart_add {
   opacity: 1;
   visibility: visible;
   bottom: -4px;
 }
-
+*/
 .product__item__pic {
   height: 270px;
   position: relative;
