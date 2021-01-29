@@ -26,28 +26,23 @@
                 <div class="col-lg-6">
                     <div class="product__details__img">
                         <div class="product__details__big__img">
-                            <img class="big_img" src="img/shop/details/product-big-1.jpg" alt="">
+                            <img class="big_img" src="<?=PATH_SHOP . "product-8.jpg";?>" alt="">
                         </div>
                         <div class="product__details__thumb">
                             <div class="pt__item active">
-                                <img data-imgbigurl="img/shop/details/product-big-2.jpg"
-                                src="img/shop/details/product-big-2.jpg" alt="">
+                                <img data-imgbigurl="<?=PATH_SHOP . "product-1.jpg";?>" src="<?=PATH_SHOP . "product-1.jpg";?>" alt="">
                             </div>
                             <div class="pt__item">
-                                <img data-imgbigurl="img/shop/details/product-big-1.jpg"
-                                src="img/shop/details/product-big-1.jpg" alt="">
+                                <img data-imgbigurl="<?=PATH_SHOP . "product-2.jpg";?>" src="<?=PATH_SHOP . "product-2.jpg";?>" alt="">
                             </div>
                             <div class="pt__item">
-                                <img data-imgbigurl="img/shop/details/product-big-4.jpg"
-                                src="img/shop/details/product-big-4.jpg" alt="">
+                                <img data-imgbigurl="<?=PATH_SHOP . "product-3.jpg";?>" src="<?=PATH_SHOP . "product-3.jpg";?>" alt="">
                             </div>
                             <div class="pt__item">
-                                <img data-imgbigurl="img/shop/details/product-big-3.jpg"
-                                src="img/shop/details/product-big-3.jpg" alt="">
+                                <img data-imgbigurl="<?=PATH_SHOP . "product-4.jpg";?>" src="<?=PATH_SHOP . "product-4.jpg";?>" alt="">
                             </div>
                             <div class="pt__item">
-                                <img data-imgbigurl="img/shop/details/product-big-5.jpg"
-                                src="img/shop/details/product-big-5.jpg" alt="">
+                                <img data-imgbigurl="<?=PATH_SHOP . "product-5.jpg";?>" src="<?=PATH_SHOP . "product-5.jpg";?>" alt="">
                             </div>
                         </div>
                     </div>
@@ -77,7 +72,5 @@
             </div>
         </div>
     </section>
-    
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, autem.</p>
 
     <br/><br/><br/><br/>
