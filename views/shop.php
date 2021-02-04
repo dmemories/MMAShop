@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="<?=PATH_ROOT;?>">Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -95,6 +95,11 @@
         
         $.get("services/getproduct.php?type=" + type + "&name=" + name + "&order=" + sort, function(data) {
             $("#productContent").html(data);
+            if (typeof($("#totalResult").val()) == "undefined") {
+                location.href = '../';
+            } else {
+                $("#productTotal").html($("#totalResult").val());
+            }
         });
         return false;
     }

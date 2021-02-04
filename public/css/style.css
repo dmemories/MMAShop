@@ -24,6 +24,15 @@
 9.  Contact
 10.  Footer Style
 -------------------------------------------------------------------*/
+
+
+.product_color_option select{
+  height: 50px;
+  width: 170px;
+  border: 1px solid #e1e1e1;
+  padding: 0 20px;
+}
+
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
@@ -1573,6 +1582,7 @@ ol {
   margin-right: 20px;
 }
 .product__details__big__img img {
+  border: solid 2px ;
   min-width: 100%;
 }
 
@@ -1616,6 +1626,8 @@ ol {
 .product__details__text p {
   color: #444444;
   margin-bottom: 18px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e1e1e1;
 }
 .product__details__text ul {
   margin-bottom: 30px;

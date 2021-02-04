@@ -33,7 +33,7 @@ class Model {
 				$sth->bindValue("{$key}", $val);
 			}
 		}
-
+		
 		$sth->execute();
 		return $sth->fetchAll((isset($option['fetch']) ? $option['fetch'] : PDO::FETCH_ASSOC));
 	}

@@ -89,14 +89,14 @@
                     <ul>
                         <li <?=(($this->viewName == "index") ? "class=\"active\"" : "");?>><a href="<?=PATH_ROOT;?>home">Home</a></li>
                         <li <?=(($this->viewName == "shop") ? "class=\"active\"" : "");?>><a href="<?=PATH_ROOT;?>shop">Shop</a>
-                            <ul class="dropdown">
+                            <!--<ul class="dropdown">
                                 <li><a href="<?=PATH_ROOT;?>shop-details">Shop Details</a></li>
                                 <li><a href="<?=PATH_ROOT;?>shoping-cart">Shoping Cart</a></li>
                                 <li><a href="<?=PATH_ROOT;?>checkout">Check Out</a></li>
                                 <li><a href="<?=PATH_ROOT;?>wisslist">Wisslist</a></li>
                                 <li><a href="<?=PATH_ROOT;?>Class">Class</a></li>
                                 <li><a href="<?=PATH_ROOT;?>blog-details">Blog Details</a></li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li><a href="<?=PATH_ROOT;?>shop">My Order</a></li>
                         <li><a href="<?=PATH_ROOT;?>blog">Cart</a></li>
