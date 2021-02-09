@@ -98,8 +98,8 @@
                                 <li><a href="<?=PATH_ROOT;?>blog-details">Blog Details</a></li>
                             </ul>-->
                         </li>
+                        <li <?=(($this->viewName == "cart") ? "class=\"active\"" : "");?>><a href="<?=PATH_ROOT;?>cart">Cart</a>
                         <li><a href="<?=PATH_ROOT;?>shop">My Order</a></li>
-                        <li><a href="<?=PATH_ROOT;?>blog">Cart</a></li>
                         <li><a href="<?=PATH_ROOT;?>contact">Contact</a></li>
                     </ul>
                 </nav>

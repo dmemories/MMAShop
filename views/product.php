@@ -82,9 +82,9 @@
                         <ul>
                             <li>Quantity: </li>
                             <div class="product_color_option">                            
-                            <select>
+                            <select id="product_amount">
                             <?php
-                                for ($i = 1; $i < 11; $i++) {
+                                for ($i = 1; $i <= SHOP_MAXBUY; $i++) {
                                     echo "<option value=\"". $i ."\">". $i ."</option>";
                                 }
                             ?>
@@ -100,7 +100,7 @@
                             -->
                             <li>Color: </li>
                             <div class="product_color_option">                            
-                            <select>
+                            <select id='product_color'>
                             <?php
                                 foreach ($this->prodColor as $val) {
                                     echo "<option value=\"". $val['product_color_id'] ."\">". ucwords($val['color_name']) ."</option>";
@@ -109,7 +109,7 @@
                             </select>
                         </div>
                         </ul>
-                        <a href="#" class="primary-btn">Add to cart</a>
+                        <a class="primary-btn" onclick="addItem();">Add to cart</a>
                     </div>
                 </div>
             </div>
@@ -120,3 +120,21 @@
 
 
     <br/><br/><br/><br/>
+    
+    <script>
+
+        function addItem() {
+            let servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
+            let productId = <?= $this->prodData['product_id'] ?>;
+            let amount = $('#product_amount').val();
+            let colorId = $('#product_color').val();
+            
+            $.post(servicePath + "add2cart.php", {pid: productId, pamount: amount, cid: colorId},
+                function(data) {
+                    console.log(data);
+                }
+            );
+            return false;
+        }
+
+    </script>

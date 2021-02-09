@@ -170,6 +170,7 @@ ol {
   color: #ffffff;
   background: #f08632;
   letter-spacing: 2px;
+  cursor: pointer;
 }
 
 .site-btn {

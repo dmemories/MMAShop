@@ -29,7 +29,7 @@
         <div class=\"col-lg-3 col-md-6 col-sm-6\">
             <div class=\"product__item\">
                 <a href=\"product/". $val['product_id'] ."\">
-                    <div class=\"product__item__pic set-bg\" style=\"cursor: pointer; background-image: url('../". PATH_SHOP . $val['type_name'] . "/" . $val['product_name'] . "/0.jpg')\">
+                    <div class=\"product__item__pic set-bg\" style=\"cursor: pointer; background-image: url('". PATH_SHOP . $val['type_name'] . "/" . $val['product_name'] . "/0.jpg')\">
                         <div class=\"product__label\">
                             <span>". $val['type_name'] ."</span>
                         </div>
