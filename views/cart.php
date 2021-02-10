@@ -1,8 +1,3 @@
-<?php
-    
-    print_r($_SESSION['cart']);
-
-?>
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
         <div class="container">
@@ -42,33 +37,31 @@
 
                             <?php
 
-                                foreach ($_SESSION['cart'] as $key => $val) {
-                                    
+                                foreach ($this->cartData as $cartData) {
                                     echo "<tr>
-                                    <td class=\"product__cart__item\">
-                                        <div class=\"product__cart__item__pic\">
-                                            <img src=\"img/shop/cart/cart-1.jpg\" alt=\"\">
-                                        </div>
-                                        <div class=\"product__cart__item__text\">
-                                            <h6>T-shirt Contrast Pocket</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class=\"quantity__item\">
-                                        <div class=\"quantity\">
-                                            <div class=\"pro-qty\">
-                                                <input type=\"text\" value=\"". $key ."\">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class=\"cart__price\">$ 30.00</td>
-                                    <td class=\"cart__close\"><span class=\"icon_close\"></span></td>
-                                </tr>";
+                                            <td class=\"product__cart__item\">
+                                                <div class=\"product__cart__item__pic\">
+                                                    <img src=\"" . PATH_SHOP . $cartData['imgPath'] ."\" alt=\"\">
+                                                </div>
+                                                <div class=\"product__cart__item__text\">
+                                                    <h6>" . $cartData['productId'] . "</h6>
+                                                    <h5>" . $cartData['price'] . "</h5>
+                                                </div>
+                                            </td>
+                                            <td class=\"quantity__item\">
+                                                <div class=\"quantity\">
+                                                    <div class=\"pro-qty\">
+                                                        <input type=\"text\" value=\"". $cartData['amount'] ."\">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class=\"cart__price\">$ 30.00</td>
+                                            <td class=\"cart__close\"><span class=\"icon_close\"></span></td>
+                                        </tr>";
 
                                 }
-                            
-                            ?>
                                 
+                            ?>
 
                             </tbody>
                         </table>

@@ -4,6 +4,7 @@
     require_once '../config.php'; 
     require_once '../' . PATH_LIB . 'model.php';
     require_once '../' . PATH_MODEL . 'product.php';
+    require_once '../' . PATH_MODEL . 'product_color.php';
     Model::init();
 
     if (empty($_POST['pid']) || empty($_POST['pamount']) || empty($_POST['cid'])) {
@@ -21,12 +22,17 @@
     }
     
     $prodData = Product::get([
-        'where' => "product.product_id = " . $productId . " AND product_color.product_color_id = " . $colorId,
-        'join' => ['product_color, product_color_id']
+        'where' => "product.product_id = " . $productId . " AND product_color_id LIKE '%" . $colorId . "%'",
     ]);
-
     if (sizeof($prodData) < 1) {
         echo "Invalid Data #3";
+        exit();
+    }
+    $prodData = ProductColor::get([
+        'where' => "product_color_id = " . $colorId
+    ]);
+    if (sizeof($prodData) < 1) {
+        echo "Invalid Data #4";
         exit();
     }
 
