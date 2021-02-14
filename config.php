@@ -10,7 +10,7 @@
 	$strExp = explode("\\", __DIR__);
 	$dirName = $strExp[(sizeof($strExp) - 1)];
 	//define('PATH_ROOT', '../../../../' . $dirName . '/');
-	define('PATH_ROOT', 'http://124.121.90.235/mmashop/');//'https://dearkit.com/');
+	define('PATH_ROOT', 'http://124.121.87.183/mmashop/');//'https://dearkit.com/');
     define('PATH_PUBLIC', PATH_ROOT . 'public/');
     define('PATH_SERVICE',	 PATH_ROOT . 'services/');
 	define('PATH_CSS', PATH_PUBLIC . 'css/');

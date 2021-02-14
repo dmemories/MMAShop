@@ -35,30 +35,38 @@
                             </thead>
                             <tbody>
 
+                                
+
                             <?php
 
+                                $totalPrice = 0;
                                 foreach ($this->cartData as $cartData) {
-                                    echo "<tr>
+                                    $totalPrice += $cartData['price'];
+                                    $linkItem = "product/" . $cartData['productId'];
+                                    echo "
+                                        <script>
+                                            var product_" . $cartData['productId'] ." = " . $cartData['productId'] . ";
+                                        </script>
+                                        <tr>
                                             <td class=\"product__cart__item\">
                                                 <div class=\"product__cart__item__pic\">
-                                                    <img src=\"" . PATH_SHOP . $cartData['imgPath'] ."\" alt=\"\">
+                                                    <a href=\"". $linkItem ."\"><img class=\"mycartitem\" src=\"" . PATH_SHOP . $cartData['imgPath'] ."\"></a>
                                                 </div>
                                                 <div class=\"product__cart__item__text\">
-                                                    <h6>" . $cartData['productId'] . "</h6>
-                                                    <h5>" . $cartData['price'] . "</h5>
+                                                    <a href=\"". $linkItem ."\"><h6>" . $cartData['productName'] . "</h6></a>
+                                                    <h5>฿" . $cartData['price'] . "</h5>
                                                 </div>
                                             </td>
                                             <td class=\"quantity__item\">
                                                 <div class=\"quantity\">
                                                     <div class=\"pro-qty\">
-                                                        <input type=\"text\" value=\"". $cartData['amount'] ."\">
+                                                        <input type=\"text\" value=\"" . $cartData['amount'] . "\">
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class=\"cart__price\">$ 30.00</td>
+                                            <td class=\"cart__price\">฿ 30.00</td>
                                             <td class=\"cart__close\"><span class=\"icon_close\"></span></td>
                                         </tr>";
-
                                 }
                                 
                             ?>
@@ -69,7 +77,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="#">Continue Shopping</a>
+                                <a class="bg-orange text-white" href="./shop">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -77,6 +85,7 @@
                                 <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
                             </div>
                         </div>
+                        <div>&nbsp;</div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -87,15 +96,45 @@
                             <button type="submit">Apply</button>
                         </form>
                     </div>-->
-                    <div class="cart__total">
+                    <div class="cart__total text-white">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <!--<li>Subtotal <span>$ 169.50</span></li>-->
+                            <li>Total <span>฿ xxxx</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        <a onclick="checkout();" class="primary-btn checkout-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+
+        function checkout() {
+            let servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
+            $.post(servicePath + "checkout.php", {},
+                function(data) {
+                    if (data != "1") {
+                        Swal.fire({
+                            title: "Error",
+                            text: data,
+                            icon: "error",
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    }
+                    else {
+                        
+                    }
+                    console.log(data);
+                }
+            );
+            return false;
+        }
+
+    </script>

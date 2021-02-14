@@ -25,6 +25,21 @@
 10.  Footer Style
 -------------------------------------------------------------------*/
 
+.bg-orange {
+  background-color: #f08632;
+}
+.bg-orange:hover{
+  filter: brightness(120%);
+}
+
+.mycartitem {
+  width: 90px;
+  height: 90px;
+}
+
+.mycartitem:hover{
+  filter: brightness(120%);
+}
 
 .product_color_option select{
   height: 50px;
@@ -32,6 +47,7 @@
   border: 1px solid #e1e1e1;
   padding: 0 20px;
 }
+
 
 /*----------------------------------------*/
 /* Template default CSS
@@ -1793,7 +1809,7 @@ ol {
   padding-top: 30px;
 }
 .shopping__cart__table table tbody tr td.product__cart__item {
-  width: 400px;
+  width: 350px;
 }
 .shopping__cart__table table tbody tr td.product__cart__item .product__cart__item__pic {
   float: left;
@@ -1845,17 +1861,25 @@ ol {
 .shopping__cart__table table tbody tr td.cart__close span {
   font-size: 18px;
   display: inline-block;
-  color: #111111;
+  color: #FFF;
   height: 40px;
   width: 40px;
-  background: #f2f2f2;
+  background: #ee4747;
   border-radius: 50%;
   line-height: 38px;
   text-align: center;
+  cursor: pointer;
+}
+
+.icon_close:hover{
+  filter: brightness(140%);
 }
 
 .continue__btn.update__btn {
   text-align: right;
+}
+.continue__btn.update__btn:hover{
+  filter: brightness(120%);
 }
 .continue__btn.update__btn a {
   color: #ffffff;
@@ -1959,6 +1983,9 @@ ol {
   padding: 12px 10px;
   text-align: center;
   letter-spacing: 2px;
+}
+.checkout-btn:hover{
+  filter: brightness(120%);
 }
 
 /*---------------------

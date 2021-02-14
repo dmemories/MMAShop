@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero__item set-bg" data-setbg="<?=PATH_IMG;?>hero/hero-2.png">
+        <div class="hero__item set-bg" data-setbg="<?=PATH_IMG;?>hero/hero-2.jpg">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
@@ -34,11 +34,11 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="about__text">
                         <div class="section-title">
-                            <span>About MMA shop</span>
-                            <h2>Test xxxxxxxxx !</h2>
+                            <span>About Cake shop</span>
+                            <h2>Cakes and bakes from the house of Queens!</h2>
                         </div>
-                        <p>"xxxxxxxxxxxxxxxxxxx" xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                            xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+                        <p>The "Cake Shop" is a Jordanian Brand that started as a small family business. The owners are
+                        Dr. Iyad Sultan and Dr. Sereen Sharabati, supported by a staff of 80 employees.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">

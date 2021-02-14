@@ -131,7 +131,31 @@
             
             $.post(servicePath + "add2cart.php", {pid: productId, pamount: amount, cid: colorId},
                 function(data) {
-                    console.log(data);
+                    if (data != "1") {
+                        Swal.fire({
+                            title: "Error",
+                            text: data,
+                            icon: "error",
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    }
+                    else {
+                        Swal.fire({
+                            title: "Add to cart successfully",
+                            icon: "success",
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.href = '../cart';
+                            }
+                        });
+                    }
                 }
             );
             return false;
