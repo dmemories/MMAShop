@@ -204,7 +204,7 @@
 
     /*-------------------
 		Quantity change
-	--------------------- */
+	--------------------- 
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
@@ -227,8 +227,7 @@
         }
         $button.parent().find('input').val(newVal);
     });
-
-    
+    */
 
     $(".product__details__thumb").niceScroll({
         cursorborder: "",

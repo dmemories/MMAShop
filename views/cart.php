@@ -45,7 +45,7 @@
                                     $linkItem = "product/" . $cartData['productId'];
                                     echo "
                                         <script>
-                                            var product_" . $cartData['productId'] ." = " . $cartData['productId'] . ";
+                                            var pdtPrice_" . $cartData['productId'] ." = " . $cartData['price'] . ";
                                         </script>
                                         <tr>
                                             <td class=\"product__cart__item\">
@@ -60,6 +60,7 @@
                                             <td class=\"quantity__item\">
                                                 <div class=\"quantity\">
                                                     <div class=\"pro-qty\">
+                                                        <input type=\"hidden\" id=\"\" value=\"\">
                                                         <input type=\"text\" value=\"" . $cartData['amount'] . "\">
                                                     </div>
                                                 </div>
@@ -136,5 +137,35 @@
             );
             return false;
         }
+
+        /*-------------------
+		Quantity change
+        --------------------- */
+        function qtyChange() {
+            alert(product_2)
+        }
+
+        var proQty = $('.pro-qty');
+        proQty.prepend('<span class="dec qtybtn" onclick="qtyChange();">-</span>');
+        proQty.append('<span class="inc qtybtn" onclick="qtyChange();">+</span>');
+        proQty.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                if (parseFloat(oldValue) < 10) {
+                    var newVal = parseFloat(oldValue) + 1;
+                } else {
+                    var newVal = 10;
+                }
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    var newVal = 1;
+                }
+            }
+            $button.parent().find('input').val(newVal);
+        });
 
     </script>
