@@ -22,28 +22,38 @@
     <div id="content"></div>
 
     <script>
+        const servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
 
         function checkout() {
-            let servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
             $.post(servicePath + "checkout.php", {},
                 function(data) {
-                    if (data != "1") {
-                        Swal.fire({
-                            title: "Error",
-                            text: data,
-                            icon: "error",
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
+                    let title;
+                    let icon;
+                    let cbFunc;
+
+                    switch (String(data)) {
+                        case "1":
+                            title = "";
+                            icon = "success";
+                            cbFunc = () => {}
+                            break;
+                        case "2":
+                            title = "";
+                            icon = "success";
+                            cbFunc = () => {}
+                            break;
                     }
-                    else {
-                        
-                    }
-                    console.log(data);
+
+                    Swal.fire({
+                        title: title,
+                        icon: icon,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            cbFunc;
+                        }
+                    });
                 }
             );
             return false;
@@ -52,7 +62,6 @@
         /*-------------------
 		Quantity change
         --------------------- */
-        const servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
         function getCartData(productId = 0, productColorId = 0, isAdd = false) {  
             $.post(servicePath + "getcart.php", {pid: productId, pcolorId: productColorId, add: (isAdd ? 1 : 0)}, function(data) {
                 $("#content").html(data);
@@ -70,7 +79,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.post(servicePath + "delcart.php", {pid: productId, pcolorId: productColorId}, function(data) {});
-                getCartData();
+                    getCartData();
                 }
             })
         }
