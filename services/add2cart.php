@@ -39,7 +39,11 @@
     $prodData = $prodData[0];
 
     if (isset($_SESSION['cart'][$productId][$colorId])) {
-        $_SESSION['cart'][$productId][$colorId] += $productAmount;
+        $total = $_SESSION['cart'][$productId][$colorId] += $productAmount;
+        if ($total > SHOP_MAXBUY) {
+            $total = SHOP_MAXBUY;
+        }
+        $_SESSION['cart'][$productId][$colorId] = $total;
         echo "1";
     }
     else {
