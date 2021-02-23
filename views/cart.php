@@ -31,16 +31,22 @@
                     let icon;
                     let cbFunc;
 
+                    console.log(String(data));
                     switch (String(data)) {
                         case "1":
-                            title = "";
+                            title = "Order Successfully";
                             icon = "success";
-                            cbFunc = () => {}
+                            cbFunc = () => { location.href ='/order'; }
                             break;
                         case "2":
-                            title = "";
-                            icon = "success";
+                            title = "Don't have any products in your cart !";
+                            icon = "warning";
                             cbFunc = () => {}
+                            break;
+                        default:
+                            title = "Order Failed";
+                            icon = "error";
+                            cbFunc = () => {  }
                             break;
                     }
 
@@ -64,6 +70,7 @@
         --------------------- */
         function getCartData(productId = 0, productColorId = 0, isAdd = false) {  
             $.post(servicePath + "getcart.php", {pid: productId, pcolorId: productColorId, add: (isAdd ? 1 : 0)}, function(data) {
+                console.log(data);
                 $("#content").html(data);
             });
         }
@@ -78,8 +85,7 @@
                 denyButtonText: `Cancel`
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.post(servicePath + "delcart.php", {pid: productId, pcolorId: productColorId}, function(data) {});
-                    getCartData();
+                    $.post(servicePath + "delcart.php", {pid: productId, pcolorId: productColorId}, function(data) { getCartData(); });
                 }
             })
         }

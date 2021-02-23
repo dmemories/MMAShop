@@ -11,16 +11,16 @@
 
     if (!empty($_POST['pid']) && !empty($_POST['pcolorId']) && isset($_POST['add'])) {
         $pid = $_POST['pid'];
+        $pcolor = $_POST['pcolorId'];
       
         // Invalid Id & ColorId Handle
         $query = Product::get([
-            "where" => "product.product_id = " . $pid . " AND product.product_color_id LIKE '%2%'",
+            "where" => "product.product_id = " . $pid . " AND product.product_color_id LIKE '%". $pcolor ."%'",
         ]);
         if (sizeof($query) < 1) {
             exit;
         }
 
-        $pcolor = $_POST['pcolorId'];
         $isAdd = $_POST['add'];
         if ($isAdd) {
             if ($_SESSION['cart'][$pid][$pcolor] < SHOP_MAXBUY) {
