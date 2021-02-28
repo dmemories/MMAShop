@@ -33,6 +33,10 @@
 
                     console.log(String(data));
                     switch (String(data)) {
+                        case "0":
+                            Back2Login();
+                            return;
+                            break;
                         case "1":
                             title = "Order Successfully";
                             icon = "success";
@@ -46,7 +50,7 @@
                         default:
                             title = "Order Failed";
                             icon = "error";
-                            cbFunc = () => {  }
+                            cbFunc = () => { }
                             break;
                     }
 

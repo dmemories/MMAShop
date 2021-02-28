@@ -131,7 +131,11 @@
             
             $.post(servicePath + "add2cart.php", {pid: productId, pamount: amount, cid: colorId},
                 function(data) {
-                    if (data != "1") {
+                    if (data == "0") {
+                        Back2Login();
+                        return;
+                    }
+                    else if (data != "1") {
                         Swal.fire({
                             title: "Error",
                             text: data,

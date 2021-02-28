@@ -3,11 +3,16 @@
     @session_start();
     require_once '../config.php'; 
     require_once '../' . PATH_LIB . 'model.php';
+    require_once '../' . PATH_LIB . 'auth.php';
     require_once '../' . PATH_MODEL . 'product_order.php';
     require_once '../' . PATH_MODEL . 'product.php';
     require_once '../' . PATH_MODEL . 'order_detail.php';
     Model::init();
 
+    if (Auth::check() !== true) {
+        echo "0";
+        exit();
+    }
     $orderDetailQuery = OrderDetail::get(['field' => "MAX(orderdetail_id) as max_id"]);
     if (empty($orderDetailQuery[0]['max_id'])) {
         $maxOrderDetailId = 0;

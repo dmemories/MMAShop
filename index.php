@@ -1,10 +1,30 @@
 <?php
 
 session_start();
+
 require_once 'config.php';
 require_once PATH_LIB . 'model.php';
 require_once PATH_LIB . 'auth.php';
 require_once 'vendor_google/autoload.php'; // Google API
+
+echo "<script>
+
+function Back2Login() {
+    Swal.fire({
+        title: \"Warning\",
+        text: \"You need to login first.\",
+        icon: \"warning\",
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            location.href = \"". PATH_ROOT . "\";
+        }
+    });
+}
+
+</script>
+";
 
 class GoogleAPI {
 

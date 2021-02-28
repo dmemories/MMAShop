@@ -24,7 +24,7 @@
         }
 
         private function defaultLogin() {
-            if (empty($_POST['email']) or empty($_POST['password'])) {}
+            if (empty($_POST['email']) || empty($_POST['password'])) {}
             else {
                 $loginResult = Auth::login($_POST['email'], $_POST['password']);
                 if ($loginResult === true) {
@@ -48,8 +48,12 @@
                 $this->setView('index');
             }
             else {
-                if (empty($_GET['code'])) { $this->defaultLogin(); }
-                else { $this->googleLogin(); }
+                if (empty($_GET['code'])) {
+                    $this->defaultLogin();
+                }
+                else {
+                    $this->googleLogin();
+                }
             }
             $this->getView();
         }

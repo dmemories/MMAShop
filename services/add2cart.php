@@ -1,12 +1,18 @@
 <?php
 
     @session_start();
-    require_once '../config.php'; 
+    require_once '../config.php';
     require_once '../' . PATH_LIB . 'model.php';
+    require_once '../' . PATH_LIB . 'auth.php';
     require_once '../' . PATH_MODEL . 'product.php';
     require_once '../' . PATH_MODEL . 'product_color.php';
+
     Model::init();
 
+    if (Auth::check() !== true) {
+        echo "0";
+        exit();
+    }
     if (empty($_POST['pid']) || empty($_POST['pamount']) || empty($_POST['cid'])) {
         echo "Invalid Data #1";
         exit();

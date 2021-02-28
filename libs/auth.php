@@ -1,11 +1,13 @@
 <?php
-
-    require_once PATH_MODEL . 'member.php';
+    
+    @include_once PATH_MODEL . 'member.php';
+    @include_once '../' . PATH_MODEL . 'member.php';
+   
 
     class Auth {
 
         public static function check() {
-            return !empty($_SESSION[AUTH_NAME]) and !empty($_SESSION[AUTH_EMAIL]);
+            return !empty($_SESSION[AUTH_NAME]) && !empty($_SESSION[AUTH_EMAIL]);
         }
 
         public static function getName() {
@@ -35,7 +37,7 @@
         public static function googleLogin($data) {
             $fullname = $data['given_name'] . " " . $data['family_name'];
             $email = $data['email'];
-
+            
             $_SESSION[AUTH_NAME] = $fullname;
             $_SESSION[AUTH_EMAIL] = $email;
             $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
