@@ -1,9 +1,12 @@
 <?php
 
-    $strExp = explode("\\", __DIR__);
-	$dirName = $strExp[(sizeof($strExp) - 1)];
-	echo getcwd();
-	
-	echo "<img src='" . "https://dearkit.com/" . "x.jpg'?>";
+    for ($i = 0; $i < 10; $i++) {
+		echo "[$i] : ";
+		for ($j = 0; $j < 5; $j++) {
+			echo $j;
+			if ($i == 4 && $j == 2) { break; break; }
+		}
+		echo "<br/>";
+	}
 	
 ?>

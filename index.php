@@ -9,6 +9,8 @@ require_once 'vendor_google/autoload.php'; // Google API
 
 echo "<script>
 
+	const rootPath = '". PATH_ROOT ."';
+
 function Back2Login() {
     Swal.fire({
         title: \"Warning\",
@@ -18,7 +20,7 @@ function Back2Login() {
         confirmButtonText: 'OK'
     }).then((result) => {
         if (result.isConfirmed) {
-            location.href = \"". PATH_ROOT . "\";
+            location.href = rootPath + 'login';
         }
     });
 }

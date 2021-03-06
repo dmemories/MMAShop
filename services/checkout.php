@@ -4,6 +4,7 @@
     require_once '../config.php'; 
     require_once '../' . PATH_LIB . 'model.php';
     require_once '../' . PATH_LIB . 'auth.php';
+    require_once '../' . PATH_MODEL . 'member.php';
     require_once '../' . PATH_MODEL . 'product_order.php';
     require_once '../' . PATH_MODEL . 'product.php';
     require_once '../' . PATH_MODEL . 'order_detail.php';
@@ -24,36 +25,42 @@
 
     $count = 0;
     OrderDetail::$db->beginTransaction();
-    foreach ($_SESSION['cart'] as $productId => $productIdArr) {
-        foreach ($productIdArr as $productColorId => $amount) {
-            if ($amount > 0) {
-                $detailAdd = OrderDetail::add([
-                    'field' => "`orderdetail_id`, `datetime`, `orderdetail_status_id`, `member_id`, `fullname`, `tel`, `address`",
-                    'value' => Model::getQueryString([$maxOrderDetailId, 'current_timestamp()', 1, 6, 'dear', '1234567', 'dddddddddd'])
-                ], false);
-                if ($detailAdd) {
-                    $orderAdd = ProductOrder::add([
-                        'field' => "`order_id`, `orderdetail_id`, `product_id`, `product_color_id`, `current_price`, `order_amount`",
-                        'value' => Model::getQueryString(['NULL', $maxOrderDetailId, $productId, $productColorId, 500, $amount])
-                    ], false);
-                    if ($orderAdd) {
-                        $count++;
-                    }
-                    else {
-                        $count = -99999;
-                        break; break;
+    $memberData = Member::get(['where' => "member_id = " . $_SESSION[AUTH_ID]])[0];
+    if (!empty($_SESSION['cart'])) {
+        $detailAdd = OrderDetail::add([
+            'field' => "`orderdetail_id`, `datetime`, `orderdetail_status_id`, `member_id`, `fullname`, `tel`, `address`",
+            'value' => Model::getQueryString([$maxOrderDetailId, 'current_timestamp()', $_SESSION[AUTH_TYPE], $_SESSION[AUTH_ID], $memberData['fullname'], $memberData['tel'], $memberData['address']])
+        ], false);
+        if ($detailAdd) {
+            foreach ($_SESSION['cart'] as $productId => $productIdArr) {
+                if ($count < 0) break;
+                foreach ($productIdArr as $productColorId => $amount) {
+                    if ($amount > 0) {
+                        $orderAdd = ProductOrder::add([
+                            'field' => "`order_id`, `orderdetail_id`, `product_id`, `product_color_id`, `current_price`, `order_amount`",
+                            'value' => Model::getQueryString(['NULL', $maxOrderDetailId, $productId, $productColorId, 500, $amount])
+                        ], false);
+                        if ($orderAdd) {
+                            $count++;
+                        }
+                        else {
+                            $count = -99999;
+                            break;
+                        }
                     }
                 }
             }
         }
     }
-    if ($count > -1) {
+
+    if ($count > 0) {
         OrderDetail::$db->commit();
-        echo (($count == 0)? "2" : "1");
+        unset($_SESSION['cart']);
+        echo "1";
     }
     else {
         OrderDetail::$db->rollBack();
-        echo "3";
+        echo (($count == 0) ? "2" : "3");
     }
 
 ?>

@@ -26,6 +26,7 @@
     define('DB_NAME', 'mma_shop');//'u898848369_mma_shop');
     
     // Auth
+    define('AUTH_ID', 'id');
     define('AUTH_NAME', 'name');
     define('AUTH_EMAIL', 'email');
     define('AUTH_TYPE', 'memberType');

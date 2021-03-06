@@ -38,9 +38,6 @@
             $fullname = $data['given_name'] . " " . $data['family_name'];
             $email = $data['email'];
             
-            $_SESSION[AUTH_NAME] = $fullname;
-            $_SESSION[AUTH_EMAIL] = $email;
-            $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
             $result = Member::get([
                 'where' => "`email` = :email AND `member_group_id` = :mgroup",
                 'bind' => [
@@ -58,7 +55,6 @@
                     'address' => ''
                     ], MEM_GOOGLE
                 );
-                
             }
             if (isset($result['error'])) {
                 return ['error' => $result['error']];
@@ -66,6 +62,18 @@
             else if (isset($result['warning'])) {
                 return ['warning' => $result['warning']];
             }
+
+            $memData = Member::get([
+                'where' => "`email` = :email AND `member_group_id` = :mgroup",
+                'bind' => [
+                    ':email' => $email,
+                    ':mgroup' => MEM_GOOGLE
+                ]
+            ])[0];
+            $_SESSION[AUTH_ID] = $memData['member_id'];
+            $_SESSION[AUTH_NAME] = $memData['fullname'];
+            $_SESSION[AUTH_EMAIL] = $memData['email'];
+            $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
             return true;
         }
 
