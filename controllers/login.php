@@ -19,7 +19,7 @@
 
                 $data = $google_service->userinfo->get();
                 $loginResult = Auth::googleLogin($data);
-                $this->view->setAlertRefresh("Welcome " . Auth::getName(), "Login Successfully !");
+                $this->view->setAlertHref("Welcome " . Auth::getName(), "Login Successfully !", PATH_ROOT . "shop");
             }
         }
 

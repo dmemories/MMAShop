@@ -18,8 +18,6 @@ class Model {
 	}
 
 	public static function get($option = null) {
-
-		
 		if (isset($option['join'])) {
 			$joinStr = (string) null;
 			foreach ($option['join'] as $val) {
@@ -62,7 +60,6 @@ class Model {
 			self::$db->beginTransaction();
 		}
 
-
 		$sth = self::$db->prepare(
 			"INSERT INTO `" . static::$table . "` " .
 			(isset($option['field']) ? "(". $option['field'] .")" : (string) null) . " " .
@@ -76,14 +73,12 @@ class Model {
 			}
 		}
 
-
 /*
 		echo "INSERT INTO `" . static::$table . "` " .
 			(isset($option['field']) ? "(". $option['field'] .")" : (string) null) . " " .
 			"VALUES (" . $option['value'] . ")" .
 			(isset($option['where']) ? "WHERE " . $option['where'] : (string) null) . ";";
 */
-
 
 		$errMsg = (string) null;
 		try {
@@ -107,8 +102,52 @@ class Model {
 		else {
 			return (empty($errMsg));
 		}
+	}
+
+	public static function update($option = null, $wantRollback = true) {
+		if ($wantRollback) {
+			self::$db->beginTransaction();
+		}
+
+		$sth = self::$db->prepare(
+			"UPDATE `" . static::$table . "` SET " . $option['set'] .
+			(isset($option['where']) ? " WHERE " . $option['where'] : (string) null) . ";"
+		);
+
+		/*echo "UPDATE `" . static::$table . "` SET " . $option['set'] .
+		(isset($option['where']) ? " WHERE " . $option['where'] : (string) null) . ";";*/
+
+		if (isset($option['bind'])) {
+			foreach ($option['bind'] as $key => $val) {
+				$key = ":" . str_replace(":", "", $key);
+				$sth->bindValue("{$key}", $val);
+			}
+		}
+
+		$errMsg = (string) null;
+		try {
+			$sth->execute();
+		}
+		catch (PDOException $e) {
+			$errMsg = $e->getMessage();
+		}
+
+		if ($wantRollback) {
+			if (empty($errMsg)) {
+				self::$db->commit();
+				return true;
+			}
+			else {
+				self::$db->rollBack();
+				return false;
+			}
+		}
+		else {
+			return (empty($errMsg));
+		}
 
 	}
+
 
 }
 

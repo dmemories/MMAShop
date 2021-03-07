@@ -11,19 +11,37 @@ echo "<script>
 
 	const rootPath = '". PATH_ROOT ."';
 
-function Back2Login() {
-    Swal.fire({
-        title: \"Warning\",
-        text: \"You need to login first.\",
-        icon: \"warning\",
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            location.href = rootPath + 'login';
-        }
-    });
-}
+	function isMatchingCode(str){
+		var myRegExp = /^[A-Za-z0-9]{4,23}$/;
+		return myRegExp.test(str);
+	}
+
+	function validateEmail(email){
+		var myRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return myRegExp.test(email);
+	}
+
+	function validateTel(tel){
+		return tel.length > 9;
+	}
+
+	function validateAddress(address){
+		return address.length > 4;
+	}
+
+	function back2Login() {
+		Swal.fire({
+			title: \"Warning\",
+			text: \"You need to login first.\",
+			icon: \"warning\",
+			confirmButtonColor: '#3085d6',
+			confirmButtonText: 'OK'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				location.href = rootPath + 'login';
+			}
+		});
+	}
 
 </script>
 ";
@@ -86,12 +104,12 @@ class View {
 		];
 	}
 
-	public function setAlertHref($title, $text, $type = "success") {
+	public function setAlertHref($title, $text, $url, $type = "success") {
 		$this->sweetAlert = [
 			"type" => $type,
 			"title" => $title,
 			"text" => $text,
-			"href" => true
+			"url" => $url
 		];
 	}
 	
@@ -103,7 +121,7 @@ class Controller {
 
 	protected function loadModel($modelArr) {
 		foreach ($modelArr as $val) {
-			require PATH_MODEL . $val . ".php";
+			require_once PATH_MODEL . $val . ".php";
 		}
 	}
 

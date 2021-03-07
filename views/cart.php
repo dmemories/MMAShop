@@ -34,7 +34,7 @@
                     //console.log(String(data));
                     switch (String(data)) {
                         case "0":
-                            Back2Login();
+                            back2Login();
                             return;
                             break;
                         case "1":

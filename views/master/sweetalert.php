@@ -17,7 +17,7 @@
             })
             </script>";
     }
-    else if (isset($this->sweetAlert['href'])) {
+    else if (isset($this->sweetAlert['url'])) {
       echo "<script>
           Swal.fire({
               title: \"". $this->sweetAlert['title'] ."\",
@@ -27,7 +27,7 @@
               confirmButtonText: 'OK'
           }).then((result) => {
               if (result.isConfirmed) {
-                  location.href = 'login';
+                  location.href = '". $this->sweetAlert['url'] . "';
               }
           })
           </script>";

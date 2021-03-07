@@ -31,6 +31,11 @@
     define('AUTH_EMAIL', 'email');
     define('AUTH_TYPE', 'memberType');
 
+    // Order Status Group
+    define('ORDER_STATUS_EMPTY', 1);
+    define('ORDER_STATUS_PENDING', 2);
+    define('ORDER_STATUS_WAITITEM', 2);
+
     // Member Group
     define('MEM_DEFAULT', 1);
     define('MEM_GOOGLE', 2);

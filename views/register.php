@@ -10,14 +10,14 @@
     -o-background-size: cover;
     background-size: cover;
   }
-  }</style>";
+  </style>";
 
   
 
 ?>
 
 <link rel="stylesheet" href="<?=PATH_CSS;?>login_style.css" type="text/css">
-<form action="" method="post" onsubmit="return checkSubmit();">
+<form action="" method="post" onsubmit="return checkSubmit();" style="margin: 0px;">
 <div class="myContents">
   <div class="d-md-flex myFont" style="opacity: 1.0;">
       <div class="container">
@@ -106,17 +106,6 @@
   }
   init();
 
-  function IsMatchingCode(str){
-		var myRegExp = /^[A-Za-z0-9]{4,23}$/;
-		return myRegExp.test(str);
-	}
-
-  function validateEmail(email){
-		var myRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return myRegExp.test(email);
-  }
-  
-
   function checkSubmit() {
     let email = document.getElementsByName("email")[0].value;
     let password1 = document.getElementsByName("password")[0].value;
@@ -133,7 +122,7 @@
 			)
 			return false;
 		}
-		else if (!IsMatchingCode(password1)) {
+		else if (!isMatchingCode(password1)) {
 			Swal.fire(
 				'',
 				'Your password should be A-Z or 0-9 and has 4-23 characters !',
@@ -149,6 +138,23 @@
 			)
 			return false;
 		}
+    else if (!validateTel(tel)) {
+      Swal.fire(
+				'',
+				'Invalid Mobile Number',
+				'warning'
+			)
+			return false;
+    }
+    else if (!validateAddress(address)) {
+      Swal.fire(
+				'',
+				'Invalid Address',
+				'warning'
+			)
+			return false;
+    }
+
     return true;
   }
 

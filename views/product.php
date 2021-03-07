@@ -132,7 +132,7 @@
             $.post(servicePath + "add2cart.php", {pid: productId, pamount: amount, cid: colorId},
                 function(data) {
                     if (data == "0") {
-                        Back2Login();
+                        back2Login();
                         return;
                     }
                     else if (data != "1") {

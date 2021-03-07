@@ -1,11 +1,10 @@
 <?php
 
-    require_once PATH_MODEL . 'member.php';
-
     class RegisterController extends Controller {
 
         public function __construct() {
             $this->setView('register');
+            $this->loadModel(["member"]);
         }
         
         public function index() {
@@ -36,7 +35,7 @@
                     ], MEM_DEFAULT
                 );
                 if ($regisResult === true) {
-                    $this->view->setAlertHref("Done", "Register Successfully !");
+                    $this->view->setAlertHref("Done", "Register Successfully !", PATH_ROOT . "login");
                 }
                 else {
                     if (isset($regisResult['error'])) {

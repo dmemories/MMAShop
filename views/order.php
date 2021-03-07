@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__text">
-                        <h2>Shopping cart</h2>
+                        <h2>My Order</h2>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -34,7 +34,7 @@
                     //console.log(String(data));
                     switch (String(data)) {
                         case "0":
-                            Back2Login();
+                            back2Login();
                             return;
                             break;
                         case "1":
