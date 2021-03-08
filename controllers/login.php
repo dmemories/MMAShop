@@ -19,7 +19,18 @@
 
                 $data = $google_service->userinfo->get();
                 $loginResult = Auth::googleLogin($data);
-                $this->view->setAlertHref("Welcome " . Auth::getName(), "Login Successfully !", PATH_ROOT . "shop");
+                if (isset($loginResult['error'])) {
+                    $this->view->setAlertRefresh("Login Failed !", $loginResult['error']);
+                }
+                else if (isset($loginResult['warning'])) {
+                    $this->view->setAlertRefresh("Login Failed !", $loginResult['warning']);
+                }
+                else {
+                    if (isset($loginResult['wantEdit']) && $loginResult['wantEdit'] === true)
+                        $this->view->setAlertHref("Login Successfully", "Please fill your mobile number and address", PATH_ROOT . "memberedit");
+                    else
+                        $this->view->setAlertHref("Welcome " . Auth::getName(), "Login Successfully !", PATH_ROOT . "shop");
+                }
             }
         }
 

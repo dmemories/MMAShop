@@ -48,13 +48,17 @@
 
             // First Login with Google
             if (sizeof($result) < 1) {
-                Member::register([
+                $regisSucc = Member::register([
                     'email' => $email,
                     'fullname' => $fullname,
                     'tel' => '',
                     'address' => ''
                     ], MEM_GOOGLE
                 );
+                $wantEditData = ($regisSucc ? true : false);
+            }
+            else {
+                $wantEditData = false;
             }
             if (isset($result['error'])) {
                 return ['error' => $result['error']];
@@ -74,7 +78,7 @@
             $_SESSION[AUTH_NAME] = $memData['fullname'];
             $_SESSION[AUTH_EMAIL] = $memData['email'];
             $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
-            return true;
+            return ['wantEdit' => $wantEditData];
         }
 
         public static function logout() {
