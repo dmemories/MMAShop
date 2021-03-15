@@ -25,47 +25,64 @@
         const servicePath = <?= "\"" . PATH_SERVICE . "\"" ?>;
 
         function checkout() {
-            $.post(servicePath + "checkout.php", {},
-                function(data) {
-                    let title;
-                    let icon;
-                    let cbFunc;
 
-                    //console.log(String(data));
-                    switch (String(data)) {
-                        case "0":
-                            back2Login();
-                            return;
-                            break;
-                        case "1":
-                            title = "Order Successfully";
-                            icon = "success";
-                            cbFunc = () => { location.href = rootPath + 'order'; }
-                            break;
-                        case "2":
-                            title = "Don't have any products in your cart !";
-                            icon = "warning";
-                            cbFunc = () => {}
-                            break;
-                        default:
-                            title = "Order Failed";
-                            icon = "error";
-                            cbFunc = () => { console.log(data); }
-                            break;
-                    }
+            Swal.fire({
+                title: 'Confirm your detail?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    
 
-                    Swal.fire({
-                        title: title,
-                        icon: icon,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            cbFunc();
+                    $.post(servicePath + "checkout.php", {},
+                        function(data) {
+                            let title;
+                            let icon;
+                            let cbFunc;
+
+                            //console.log(String(data));
+                            switch (String(data)) {
+                                case "0":
+                                    back2Login();
+                                    return;
+                                    break;
+                                case "1":
+                                    title = "Order Successfully";
+                                    icon = "success";
+                                    cbFunc = () => { location.href = rootPath + 'order'; }
+                                    break;
+                                case "2":
+                                    title = "Don't have any products in your cart !";
+                                    icon = "warning";
+                                    cbFunc = () => {}
+                                    break;
+                                default:
+                                    title = "Order Failed";
+                                    icon = "error";
+                                    cbFunc = () => { console.log(data); }
+                                    break;
+                            }
+
+                            Swal.fire({
+                                title: title,
+                                icon: icon,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    cbFunc();
+                                }
+                            });
                         }
-                    });
+                    );
+                    
+
                 }
-            );
+            })
+
             return false;
         }
 

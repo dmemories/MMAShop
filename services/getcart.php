@@ -3,6 +3,7 @@
     @session_start();
     require_once '../config.php'; 
     require_once '../' . PATH_LIB . 'model.php';
+    require_once '../' . PATH_MODEL . 'member.php';
     require_once '../' . PATH_MODEL . 'product.php';
     require_once '../' . PATH_MODEL . 'product_type.php';
     require_once '../' . PATH_MODEL . 'product_color.php';
@@ -31,6 +32,13 @@
             $_SESSION['cart'][$pid][$pcolor]--;
         }
     }
+
+    $memData = Member::get([
+        "where" => "`member_id` = " . $_SESSION[AUTH_ID],
+    ])[0];
+    $memName = $memData['fullname'];
+    $memTel = $memData['tel'];
+    $memAddr = $memData['address'];
 
     $cartDataArr = (array) null;
     if (isset($_SESSION['cart'])) {
@@ -145,6 +153,22 @@
                             <button type="submit">Apply</button>
                         </form>
                     </div>-->
+                    <div class="cart__total text-white" style="padding: 35px 30px 1px;">
+                        <div class="checkout__order__products"><h6>Address</h6></div>
+                            <ul class="checkout__total__products">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col"><li>Name :</li></div>
+                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>"/></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><li>Mobile :</li></div>
+                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>"/></div>
+                                    </div>
+                                </div>
+                                <li><samp>Address : </samp><br/><textarea name="" id="" style="width: 100%;" rows="5"><?=$memAddr;?></textarea></li>
+                            </ul>
+                    </div> 
                     <div class="cart__total text-white">
                         <h6>Cart total</h6>
                         <ul>

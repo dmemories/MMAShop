@@ -6,11 +6,9 @@
     <title>M.MA Shop</title>
     <link rel="icon" href="<?=PATH_IMG;?>icon.png" type = "image/x-icon"> 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700" rel="stylesheet">
-    <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"-->
-    rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">-->
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="<?=PATH_CSS;?>bootstrap.min.css" type="text/css">

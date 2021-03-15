@@ -352,7 +352,7 @@ ol {
   float: left;
 }
 .header__top__left ul li {
-  font-size: 14px;
+  font-size: 17px;
   color: #FFFFFF;
   list-style: none;
   display: inline-block;
@@ -531,7 +531,7 @@ ol {
   display: none;
 }
 .header__menu ul li a {
-  font-size: 16px;
+  font-size: 18px;
   color: #ffffff;
   display: block;
   font-weight: 600;
@@ -1953,7 +1953,7 @@ ol {
 
 .cart__total {
   background: #fdf3ea;
-  padding: 35px 40px 40px;
+  padding: 10px 40px 40px;
 }
 .cart__total h6 {
   color: #111111;
