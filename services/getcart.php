@@ -3,6 +3,7 @@
     @session_start();
     require_once '../config.php'; 
     require_once '../' . PATH_LIB . 'model.php';
+    require_once '../' . PATH_LIB . 'auth.php';
     require_once '../' . PATH_MODEL . 'member.php';
     require_once '../' . PATH_MODEL . 'product.php';
     require_once '../' . PATH_MODEL . 'product_type.php';
@@ -33,12 +34,20 @@
         }
     }
 
-    $memData = Member::get([
-        "where" => "`member_id` = " . $_SESSION[AUTH_ID],
-    ])[0];
-    $memName = $memData['fullname'];
-    $memTel = $memData['tel'];
-    $memAddr = $memData['address'];
+    if (Auth::check()) {
+        $memData = Member::get([
+            "where" => "`member_id` = " . $_SESSION[AUTH_ID],
+        ])[0];
+        $memName = $memData['fullname'];
+        $memTel = $memData['tel'];
+        $memAddr = $memData['address'];
+    }
+    else {
+        $memName = (string) null;
+        $memTel = (string) null;
+        $memAddr = (string) null;
+    }
+    
 
     $cartDataArr = (array) null;
     if (isset($_SESSION['cart'])) {
@@ -159,14 +168,14 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col"><li>Name :</li></div>
-                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>"/></div>
+                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>" id="name"/></div>
                                     </div>
                                     <div class="row">
                                         <div class="col"><li>Mobile :</li></div>
-                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>"/></div>
+                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>" id="mobile"/></div>
                                     </div>
                                 </div>
-                                <li><samp>Address : </samp><br/><textarea name="" id="" style="width: 100%;" rows="5"><?=$memAddr;?></textarea></li>
+                                <li><samp>Address : </samp><br/><textarea name="" id="address" style="width: 100%;" rows="5"><?=$memAddr;?></textarea></li>
                             </ul>
                     </div> 
                     <div class="cart__total text-white">

@@ -37,7 +37,13 @@
                 if (result.isConfirmed) {
                     
 
-                    $.post(servicePath + "checkout.php", {},
+                    $.post(
+                        servicePath + "checkout.php",
+                        {
+                            name: $("#name").val(),
+                            mobile: $("#mobile").val(),
+                            address: $("#address").val()
+                        },
                         function(data) {
                             let title;
                             let icon;
@@ -59,10 +65,25 @@
                                     icon = "warning";
                                     cbFunc = () => {}
                                     break;
+                                case "3":
+                                    title = "Invalid Name !";
+                                    icon = "warning";
+                                    cbFunc = () => {}
+                                    break;
+                                case "4":
+                                    title = "Invalid Mobile !";
+                                    icon = "warning";
+                                    cbFunc = () => {}
+                                    break;
+                                case "5":
+                                    title = "Invalid Address !";
+                                    icon = "warning";
+                                    cbFunc = () => {}
+                                    break;
                                 default:
                                     title = "Order Failed";
                                     icon = "error";
-                                    cbFunc = () => { console.log(data); }
+                                    cbFunc = () => { console.log("[" + data + "]"); }
                                     break;
                             }
 

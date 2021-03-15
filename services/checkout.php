@@ -14,6 +14,20 @@
         echo "0";
         exit();
     }
+    else if (empty($_POST['name'])) {
+        echo "3";
+        exit();
+    }
+    else if (empty($_POST['mobile'])) {
+        echo "4";
+        exit();
+    }
+    else if (empty($_POST['address'])) {
+        echo "5";
+        exit();
+    }
+
+    
     $orderDetailQuery = OrderDetail::get(['field' => "MAX(orderdetail_id) as max_id"]);
     if (empty($orderDetailQuery[0]['max_id'])) {
         $maxOrderDetailId = 0;
@@ -29,7 +43,7 @@
     if (!empty($_SESSION['cart'])) {
         $detailAdd = OrderDetail::add([
             'field' => "`orderdetail_id`, `datetime`, `orderdetail_status_id`, `member_id`, `fullname`, `tel`, `address`",
-            'value' => Model::getQueryString([$maxOrderDetailId, 'current_timestamp()', $_SESSION[AUTH_TYPE], $_SESSION[AUTH_ID], $memberData['fullname'], $memberData['tel'], $memberData['address']])
+            'value' => Model::getQueryString([$maxOrderDetailId, 'current_timestamp()', $_SESSION[AUTH_TYPE], $_SESSION[AUTH_ID], $_POST['name'], $_POST['mobile'], $_POST['address']])
         ], false);
         if ($detailAdd) {
             foreach ($_SESSION['cart'] as $productId => $productIdArr) {
@@ -60,7 +74,7 @@
     }
     else {
         OrderDetail::$db->rollBack();
-        echo (($count == 0) ? "2" : "3");
+        echo (($count == 0) ? "2" : "9999");
     }
 
 ?>
