@@ -85,108 +85,108 @@
     
 
 <section class="shopping-cart spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="shopping__cart__table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                            <?php
+                        <?php
 
-                                $totalPriceAll = 0;
-                                foreach ($cartDataArr as $cartData) {
-                                    $total = ($cartData['price'] * $cartData['amount']);
-                                    $totalPriceAll += $total;
-                                    $linkItem = "product/" . $cartData['productId'];
-                                    echo "
-                                        <script>
-                                            var pdtPrice_" . $cartData['productId'] ." = " . $cartData['price'] . ";
-                                        </script>
-                                        <tr>
-                                            <td class=\"product__cart__item\">
-                                                <div class=\"product__cart__item__pic\">
-                                                    <a href=\"". $linkItem ."\"><img class=\"mycartitem\" src=\"" . PATH_SHOP . $cartData['imgPath'] ."\"></a>
+                            $totalPriceAll = 0;
+                            foreach ($cartDataArr as $cartData) {
+                                $total = ($cartData['price'] * $cartData['amount']);
+                                $totalPriceAll += $total;
+                                $linkItem = "product/" . $cartData['productId'];
+                                echo "
+                                    <script>
+                                        var pdtPrice_" . $cartData['productId'] ." = " . $cartData['price'] . ";
+                                    </script>
+                                    <tr>
+                                        <td class=\"product__cart__item\">
+                                            <div class=\"product__cart__item__pic\">
+                                                <a href=\"". $linkItem ."\"><img class=\"mycartitem\" src=\"" . PATH_SHOP . $cartData['imgPath'] ."\"></a>
+                                            </div>
+                                            <div class=\"product__cart__item__text\">
+                                                <a href=\"". $linkItem ."\"><h6>" . $cartData['productName'] . " (" . ucfirst($cartData['color']) . ")</h6></a>
+                                                <h5>฿" . $cartData['price'] . "</h5>
+                                            </div>
+                                        </td>
+                                        <td class=\"quantity__item\">
+                                            <div class=\"quantity\">
+                                                <div class=\"pro-qty\">
+                                                    <span class=\"dec qtybtn\" onclick=\"getCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ", false);\">-</span>
+                                                    <input type=\"text\" value=\"" . $cartData['amount'] . "\">
+                                                    <span class=\"inc qtybtn\" onclick=\"getCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ", true);\">+</span>
                                                 </div>
-                                                <div class=\"product__cart__item__text\">
-                                                    <a href=\"". $linkItem ."\"><h6>" . $cartData['productName'] . " (" . ucfirst($cartData['color']) . ")</h6></a>
-                                                    <h5>฿" . $cartData['price'] . "</h5>
-                                                </div>
-                                            </td>
-                                            <td class=\"quantity__item\">
-                                                <div class=\"quantity\">
-                                                    <div class=\"pro-qty\">
-                                                        <span class=\"dec qtybtn\" onclick=\"getCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ", false);\">-</span>
-                                                        <input type=\"text\" value=\"" . $cartData['amount'] . "\">
-                                                        <span class=\"inc qtybtn\" onclick=\"getCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ", true);\">+</span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class=\"cart__price\">฿ " . $total . "</td>
-                                            <td class=\"cart__close\" onclick=\"delCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ");\"><span class=\"icon_close\"></span></td>
-                                        </tr>";
-                                }
-                                
-                            ?>
+                                            </div>
+                                        </td>
+                                        <td class=\"cart__price\">฿ " . $total . "</td>
+                                        <td class=\"cart__close\" onclick=\"delCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ");\"><span class=\"icon_close\"></span></td>
+                                    </tr>";
+                            }
+                            
+                        ?>
 
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn">
-                                <a class="bg-orange text-white" href="./shop">Continue Shopping</a>
-                            </div>
-                        </div>
-                        <!--<div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="continue__btn update__btn">
-                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
-                            </div>
-                        </div>-->
-                        <div>&nbsp;</div>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-lg-4">
-                    <!--<div class="cart__discount">
-                        <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit">Apply</button>
-                        </form>
-                    </div>-->
-                    <div class="cart__total text-white" style="padding: 35px 30px 1px;">
-                        <div class="checkout__order__products"><h6>Address</h6></div>
-                            <ul class="checkout__total__products">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col"><li>Name :</li></div>
-                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>" id="name"/></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><li>Mobile :</li></div>
-                                        <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>" id="mobile"/></div>
-                                    </div>
-                                </div>
-                                <li><samp>Address : </samp><br/><textarea name="" id="address" style="width: 100%;" rows="5"><?=$memAddr;?></textarea></li>
-                            </ul>
-                    </div> 
-                    <div class="cart__total text-white">
-                        <h6>Cart total</h6>
-                        <ul>
-                            <!--<li>Subtotal <span>$ 169.50</span></li>-->
-                            <li>Total <span>฿ <?=$totalPriceAll;?></span></li>
-                        </ul>
-                        <a onclick="checkout();" class="primary-btn checkout-btn">Proceed to checkout</a>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a class="bg-orange text-white" href="./shop">Continue Shopping</a>
+                        </div>
                     </div>
+                    <!--<div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn">
+                            <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                        </div>
+                    </div>-->
+                    <div>&nbsp;</div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <!--<div class="cart__discount">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Coupon code">
+                        <button type="submit">Apply</button>
+                    </form>
+                </div>-->
+                <div class="cart__total text-white" style="padding: 35px 30px 1px;">
+                    <div class="checkout__order__products"><h6>Address</h6></div>
+                        <ul class="checkout__total__products">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col"><li>Name :</li></div>
+                                    <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>" id="name" maxlength="50"/></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><li>Mobile :</li></div>
+                                    <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>" id="mobile" maxlength="12"/></div>
+                                </div>
+                            </div>
+                            <li><samp>Address : </samp><br/><textarea name="" id="address" style="width: 100%;" rows="5" maxlength="240"><?=$memAddr;?></textarea></li>
+                        </ul>
+                </div> 
+                <div class="cart__total text-white">
+                    <h6>Cart total</h6>
+                    <ul>
+                        <!--<li>Subtotal <span>$ 169.50</span></li>-->
+                        <li>Total <span>฿ <?=$totalPriceAll;?></span></li>
+                    </ul>
+                    <a onclick="checkout();" class="primary-btn checkout-btn">Proceed to checkout</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>

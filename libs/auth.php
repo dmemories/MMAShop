@@ -27,6 +27,7 @@
                 return ['warning' => $result['warning']];
             }
             else {
+                $_SESSION[AUTH_ID] = $result['member_id'];
                 $_SESSION[AUTH_NAME] = $result['name'];
                 $_SESSION[AUTH_EMAIL] = $result['email'];
                 $_SESSION[AUTH_TYPE] = MEM_DEFAULT;

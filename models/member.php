@@ -19,7 +19,7 @@
             ]);
             switch (sizeof($result)) {
                 case 0: return ['warning' => "Invalid email or password !"];
-                case 1: return ['name' => $result[0]['fullname'], 'email' => $result[0]['email']];
+                case 1: return ['name' => $result[0]['fullname'], 'email' => $result[0]['email'], 'member_id' => $result[0]['member_id']];
                 case 2: return ['error' => "login error #01"];
                 default : return ['error' => "login error #02"];
             }
