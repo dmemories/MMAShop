@@ -28,6 +28,7 @@
                         <thead>
                             <tr style="text-align: center;">
                                 <th>Product</th>
+                                <th>Status</th>
                                 <th>Total</th>
                                 <th></th>
                             </tr>
@@ -35,14 +36,12 @@
                         <tbody>
                             <tr style="text-align: center;">
                                 <td class="product__cart__item">
-                                    <div class="product__cart__item__pic" >
-                                        <a href=""><img class="mycartitem" src=""></a>
-                                        name
+                                    <div style="display: flex;justify-content: center;">
+                                       <img class="mycartitem" src="">
                                     </div>
-                                    
                                 </td>
-                                <th>Total</th>
-                                <th></th>
+                                <th>xxxxxx</th>
+                                <th>999</th>
                             </tr>
                         </tbody>
                     </table>
