@@ -34,15 +34,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style="text-align: center;">
+                        <?php
+
+                            foreach ($this->orderData as $val) {
+                                echo '<tr style="text-align: center;">
                                 <td class="product__cart__item">
                                     <div style="display: flex;justify-content: center;">
-                                       <img class="mycartitem" src="">
+                                       <img class="mycartitem" src="'. $val['img'] .'">
                                     </div>
                                 </td>
-                                <th>xxxxxx</th>
-                                <th>999</th>
-                            </tr>
+                                <th>'. $val['status'] .'</th>
+                                <th>'. $val['total'] .'</th>
+                            </tr>';
+                            }
+                           
+                        ?>
                         </tbody>
                     </table>
                 </div>
