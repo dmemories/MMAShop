@@ -192,7 +192,7 @@ class Router {
 	private function callFunction() {
 		$urlLength = sizeof($this->url);
 
-		if ($urlLength > 1 and !method_exists($this->controller, $this->url[1])) {
+		if ($urlLength > 1 && !method_exists($this->controller, $this->url[1])) {
 			$this->controller->index($this->url[1]);
 			return;
 		}

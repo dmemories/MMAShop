@@ -27,9 +27,10 @@
                     <table>
                         <thead>
                             <tr style="text-align: center;">
-                                <th>Order</th>
-                                <th>Status</th>
-                                <th>Total</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Sum</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -40,14 +41,27 @@
                                 echo '<tr style="text-align: center;">
                                 <td class="product__cart__item">
                                     <div style="display: flex;justify-content: center;">
-                                       <img class="mycartitem" src="'. $val['img'] .'" style="cursor: pointer;">
+                                       <img class="mycartitem" src="'. $val['proImg'] .'" style="cursor: pointer;">
                                     </div>
                                 </td>
-                                <td>'. $val['status'] .'</td>
-                                <td>'. $val['total'] .'</th>
-                            </tr>'; 
+                                <td>'. $val['currPrice'] .'</td>
+                                <td>'. $val['orderAmount'] .'</td>
+                                <td>'. $val['sum'] .'</th>
+                            </tr>';
                             }
-                           
+                            echo '<tr style="text-align: center;">
+                                <td colspan="2" align="right">
+                                    Total
+                                </td>
+                                <td colspan="2" align="center">'. $this->total .'</th>
+                            </tr>';
+                            echo '<tr style="text-align: center;">
+                                <td colspan="2" align="right">
+                                    Status
+                                </td>
+                                <td colspan="2" align="center">'. $this->status .'</th>
+                            </tr>';
+                            
                         ?>
                         </tbody>
                     </table>

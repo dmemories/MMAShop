@@ -50,9 +50,10 @@
                 if ($count < 0) break;
                 foreach ($productIdArr as $productColorId => $amount) {
                     if ($amount > 0) {
+                        $productData = Product::get(['where' => "product_id = " . $productId])[0];
                         $orderAdd = ProductOrder::add([
                             'field' => "`order_id`, `orderdetail_id`, `product_id`, `product_color_id`, `current_price`, `order_amount`",
-                            'value' => Model::getQueryString(['NULL', $maxOrderDetailId, $productId, $productColorId, 500, $amount])
+                            'value' => Model::getQueryString(['NULL', $maxOrderDetailId, $productId, $productColorId, $productData['product_price'], $amount])
                         ], false);
                         if ($orderAdd) {
                             $count++;
