@@ -50,43 +50,53 @@
                             let cbFunc;
 
                             //console.log(String(data));
-                            switch (String(data)) {
-                                case "0":
-                                    back2Login();
-                                    return;
-                                    break;
-                                case "1":
+                            data = String(data);
+                            if (data.indexOf("<!SUCC!?>,") >= 0) {
+                                let maxId = data.split(",")[1];
+                                if (maxId.match(/^[0-9]+$/)) {
                                     title = "Order Successfully";
                                     icon = "success";
-                                    cbFunc = () => { location.href = rootPath + 'order'; }
-                                    break;
-                                case "2":
-                                    title = "Don't have any products in your cart !";
-                                    icon = "warning";
-                                    cbFunc = () => {}
-                                    break;
-                                case "3":
-                                    title = "Invalid Name !";
-                                    icon = "warning";
-                                    cbFunc = () => {}
-                                    break;
-                                case "4":
-                                    title = "Invalid Mobile !";
-                                    icon = "warning";
-                                    cbFunc = () => {}
-                                    break;
-                                case "5":
-                                    title = "Invalid Address !";
-                                    icon = "warning";
-                                    cbFunc = () => {}
-                                    break;
-                                default:
-                                    title = "Order Failed";
+                                    cbFunc = () => { location.href = rootPath + 'order/' + maxId; }
+                                }
+                                else {
+                                    title = "Order Error";
                                     icon = "error";
                                     cbFunc = () => { console.log("[" + data + "]"); }
-                                    break;
+                                }
                             }
-
+                            else {
+                                switch (data) {
+                                    case "0":
+                                        back2Login();
+                                        return;
+                                        break;
+                                    case "2":
+                                        title = "Don't have any products in your cart !";
+                                        icon = "warning";
+                                        cbFunc = () => {}
+                                        break;
+                                    case "3":
+                                        title = "Invalid Name !";
+                                        icon = "warning";
+                                        cbFunc = () => {}
+                                        break;
+                                    case "4":
+                                        title = "Invalid Mobile !";
+                                        icon = "warning";
+                                        cbFunc = () => {}
+                                        break;
+                                    case "5":
+                                        title = "Invalid Address !";
+                                        icon = "warning";
+                                        cbFunc = () => {}
+                                        break;
+                                    default:
+                                        title = "Order Failed";
+                                        icon = "error";
+                                        cbFunc = () => { console.log("[" + data + "]"); }
+                                        break;
+                                }
+                            }
                             Swal.fire({
                                 title: title,
                                 icon: icon,

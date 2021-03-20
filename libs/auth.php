@@ -75,6 +75,7 @@
                     ':mgroup' => MEM_GOOGLE
                 ]
             ])[0];
+            
             $_SESSION[AUTH_ID] = $memData['member_id'];
             $_SESSION[AUTH_NAME] = $memData['fullname'];
             $_SESSION[AUTH_EMAIL] = $memData['email'];

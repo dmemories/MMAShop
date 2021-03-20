@@ -40,11 +40,11 @@
                                 echo '<tr style="text-align: center;">
                                 <td class="product__cart__item">
                                     <div style="display: flex;justify-content: center;">
-                                       <img class="mycartitem" src="'. $val['img'] .'" style="cursor: pointer;">
+                                       <a href="'. $val['href'] .'"><img class="mycartitem" src="'. $val['img'] .'" style="cursor: pointer;"></a>
                                     </div>
                                 </td>
                                 <td>'. $val['status'] .'</td>
-                                <td>'. $val['total'] .'</th>
+                                <td>'. number_format($val['total']) .'</th>
                             </tr>'; 
                             }
                            

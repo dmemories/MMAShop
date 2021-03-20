@@ -71,7 +71,7 @@
     if ($count > 0) {
         OrderDetail::$db->commit();
         unset($_SESSION['cart']);
-        echo "1";
+        echo "<!SUCC!?>," . $maxOrderDetailId;
     }
     else {
         OrderDetail::$db->rollBack();

@@ -118,7 +118,7 @@
                                             </div>
                                             <div class=\"product__cart__item__text\">
                                                 <a href=\"". $linkItem ."\"><h6>" . $cartData['productName'] . " (" . ucfirst($cartData['color']) . ")</h6></a>
-                                                <h5>฿" . $cartData['price'] . "</h5>
+                                                <h5>฿" . number_format($cartData['price']) . "</h5>
                                             </div>
                                         </td>
                                         <td class=\"quantity__item\">
@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class=\"cart__price\">฿ " . $total . "</td>
+                                        <td class=\"cart__price\">฿ " . number_format($total) . "</td>
                                         <td class=\"cart__close\" onclick=\"delCartData(" . $cartData['productId'] . ", " . $cartData['colorId'] . ");\"><span class=\"icon_close\"></span></td>
                                     </tr>";
                             }
@@ -164,20 +164,20 @@
                 </div>-->
                 <div class="cart__total text-white" style="padding: 35px 30px 1px;">
                     <div class="checkout__order__products"><h6>Address</h6></div>
-                        <ul class="checkout__total__products">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col"><li>Name :</li></div>
-                                    <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>" id="name" maxlength="50"/></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col"><li>Mobile :</li></div>
-                                    <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>" id="mobile" maxlength="12"/></div>
-                                </div>
+                    <ul class="checkout__total__products">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col"><li>Name :</li></div>
+                                <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memName;?>" id="name" maxlength="50"/></div>
                             </div>
-                            <li><samp>Address : </samp><br/><textarea name="" id="address" style="width: 100%;" rows="5" maxlength="240"><?=$memAddr;?></textarea></li>
-                        </ul>
-                </div> 
+                            <div class="row">
+                                <div class="col"><li>Mobile :</li></div>
+                                <div class="col"><input type="text" style="margin-top: 4px;" value="<?=$memTel;?>" id="mobile" maxlength="12"/></div>
+                            </div>
+                        </div>
+                        <li><samp>Address : </samp><br/><textarea name="" id="address" style="width: 100%;" rows="5" maxlength="240"><?=$memAddr;?></textarea></li>
+                    </ul>
+                </div>
                 <div class="cart__total text-white">
                     <h6>Cart total</h6>
                     <ul>

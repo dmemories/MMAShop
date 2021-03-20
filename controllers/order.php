@@ -27,6 +27,7 @@
                         $productType = ProductType::get([ 'where' => "product_type_id = " . $firstProduct['product_type_id'] ])[0];
                         $orderStatus = OrderDetailStatus::get([ 'where' => "orderdetail_status_id  = " . $orderDetail['orderdetail_status_id'] ])[0];
                         $this->view->orderData[] = [
+                            "href" => 'order/' . $firstProduct['product_id'],
                             "img" => PATH_SHOP . $productType['type_name'] . '/' . $firstProduct['product_name'] . '/0.jpg',
                             "status" => $orderStatus['status_name'],
                             "total" => $total
@@ -41,6 +42,7 @@
                     if (isOwnerDetailId)  next
                     else send err msg
                 */
+                
                 
                 $orderStatus = OrderDetailStatus::get([ 'where' => "orderdetail_status_id  = " . $orderDetailId ])[0];
                 $this->view->status = $orderStatus['status_name'];
