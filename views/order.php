@@ -27,9 +27,9 @@
                     <table>
                         <thead>
                             <tr style="text-align: center;">
-                                <th>Order</th>
+                                <th>Product</th>
+                                <th>Order Id</th>
                                 <th>Status</th>
-                                <th>Total</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -43,8 +43,8 @@
                                        <a href="'. $val['href'] .'"><img class="mycartitem" src="'. $val['img'] .'" style="cursor: pointer;"></a>
                                     </div>
                                 </td>
+                                <td>#00'. $val['orderId'] .'</td>
                                 <td>'. $val['status'] .'</td>
-                                <td>'. number_format($val['total']) .'</th>
                             </tr>'; 
                             }
                            

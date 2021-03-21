@@ -25,6 +25,11 @@
 10.  Footer Style
 -------------------------------------------------------------------*/
 
+.myicon {
+  width: 30px;
+  height: 30px;
+}
+
 .bg-orange {
   background-color: #f08632;
 }

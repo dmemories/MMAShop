@@ -41,8 +41,8 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__cart">
         <div class="offcanvas__cart__links">
-            <a href="#" class="search-switch"><img src="<?=PATH_IMG;?>icon/search.png" alt=""></a>
-            <a href="#"><img src="<?=PATH_IMG;?>icon/heart.png" alt=""></a>
+            <a href="<?=PATH_ROOT . "shop";?>" class="search-switch"><img src="<?=PATH_IMG;?>icon/search.png" alt=""></a>
+            <a href="https://www.facebook.com/m.maisreal" target="_blank"><img src="<?=PATH_IMG;?>icon/facebook.png" alt="" class="myicon"></a>
         </div>
         <?php include PATH_MVIEW . 'header_cart.php'; ?>
     </div>
@@ -70,8 +70,9 @@
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">
-                                <a href="#" class="search-switch"><img src="<?=PATH_IMG;?>icon/search.png" alt=""></a>
-                                <a href="#"><img src="<?=PATH_IMG;?>icon/heart.png" alt=""></a>
+                                <a href="<?=PATH_ROOT . "shop";?>" class="search-switch"><img src="<?=PATH_IMG;?>icon/search.png" alt=""></a>
+                                <a href="https://www.facebook.com/m.maisreal" target="_blank"><img src="<?=PATH_IMG;?>icon/facebook.png" alt="" class="myicon"></a>
+                                <a href="#"><img src="<?=PATH_IMG;?>icon/shopee.png" alt="" class="myicon"></a>
                             </div>
                             <?php include PATH_MVIEW . 'header_cart.php'; ?>
                         </div>
