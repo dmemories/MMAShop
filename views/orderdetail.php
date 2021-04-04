@@ -10,7 +10,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
                         <a href="<?="../";?>">Home</a>
-                        <a href="<?="./";?>">My Order</a>
+                        <a href="<?="../order";?>">My Order</a>
                         <span>Order Detail</span>
                     </div>
                 </div>
@@ -21,6 +21,7 @@
 
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
+    <form action="upload" id="imgform" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -79,14 +80,28 @@
                 <div class="cart__total text-white" style="padding: 35px 30px 1px;">
                     <div class="checkout__order__products" style="text-align: center;"><h6>Payment Inform</h6></div>
                     <ul class="checkout__total__products" style="text-align: center;">
-                        <li><img src="<?=$this->paymentImg?>" style="width: 240px; height:240px;"/><br/></li>
+                        <li>
+                            <?php
+                                if (empty(strpos($this->paymentImg, "noimg"))) {
+                                    echo "<img onclick=\"window.open('". $this->paymentImg ."')\" src=\"". $this->paymentImg ."\" style=\"width:240px; cursor:pointer;\"/><br/>";
+                                }
+                                else {
+                                    echo "<img src=\"". $this->paymentImg ."\" style=\"width:240px;\"/><br/>";
+                                }
+                            
+                            ?>
+                        </li>
                     </ul>
                 </div>
                 <div class="cart__total text-white">
-                    <ul>
-                        <li>Select your payment image <input type="file"/></li>
-                    </ul>
-                    <a onclick="" class="primary-btn checkout-btn">Upload</a>
+                    <?php
+                        if (@$this->isComplete != 3) {
+                            echo "<ul>
+                                <li>Select your payment image <input type=\"file\" name=\"paymentfile\"/></li>
+                                </ul>
+                                <a onclick=\"paymentImgSubmit()\" class=\"primary-btn checkout-btn\">Upload</a>";
+                        }
+                    ?>
                 </div>
             </div>
             
@@ -99,4 +114,14 @@
 
         </div>
     </div>
+    <input type="hidden" name="orderId" value="<?=$this->orderId;?>"/>
+    </form>
 </section>
+
+
+<script>
+    function paymentImgSubmit() {
+        if (document.getElementsByName('paymentfile')[0].files.length > 0)
+            document.getElementById('imgform').submit()
+    }
+</script>

@@ -28,6 +28,17 @@ class Model {
 			}
 		}
 
+		// 'join' => ['tablename, fieldname'] 
+/*
+		
+		echo "SELECT " . (isset($option['field']) ? $option['field'] : "*") .
+		" FROM `". static::$table . "` " .
+		(!empty($option['join']) ? $joinStr : (string) null) .
+		(!empty($option['where']) ? " WHERE " . $option['where'] : (string) null) .
+		(!empty($option['order']) ? " ORDER BY " . $option['order'][0] . " " . $option['order'][1] : (string) null) . ";";
+*/
+
+
 		$sth = self::$db->prepare(
 			"SELECT " . (isset($option['field']) ? $option['field'] : "*") .
 			" FROM `". static::$table . "` " .
@@ -36,14 +47,6 @@ class Model {
 			(!empty($option['order']) ? " ORDER BY " . $option['order'][0] . " " . $option['order'][1] : (string) null) . ";"
 		);
 		
-/*
-		echo "SELECT " . (isset($option['field']) ? $option['field'] : "*") .
-		" FROM `". static::$table . "` " .
-		(!empty($option['join']) ? $joinStr : (string) null) .
-		(!empty($option['where']) ? " WHERE " . $option['where'] : (string) null) .
-		(!empty($option['order']) ? " ORDER BY " . $option['order'][0] . " " . $option['order'][1] : (string) null) . ";";
-*/
-
 		if (isset($option['bind'])) {
 			foreach ($option['bind'] as $key => $val) {
 				$key = ":" . str_replace(":", "", $key);

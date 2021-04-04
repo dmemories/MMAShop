@@ -79,6 +79,14 @@ class View {
 		require PATH_VIEW . $this->viewName . '.php';
 	}
 
+	public function setAlert($title, $text) {
+		$this->sweetAlert = [
+			"type" => "success",
+			"title" => $title,
+			"text" => $text,
+		];
+	}
+
 	public function setAlertWarning($title, $text) {
 		$this->sweetAlert = [
 			"type" => "warning",
