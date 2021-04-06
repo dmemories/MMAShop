@@ -41,9 +41,11 @@
     OrderDetail::$db->beginTransaction();
     $memberData = Member::get(['where' => "member_id = " . $_SESSION[AUTH_ID]])[0];
     if (!empty($_SESSION['cart'])) {
+        date_default_timezone_set("Asia/Bangkok");
+        $dateTime = date('Y-m-d H:i:s');
         $detailAdd = OrderDetail::add([
-            'field' => "`orderdetail_id`, `datetime`, `orderdetail_status_id`, `member_id`, `fullname`, `tel`, `address`",
-            'value' => Model::getQueryString([$maxOrderDetailId, 'current_timestamp()', $_SESSION[AUTH_TYPE], $_SESSION[AUTH_ID], $_POST['name'], $_POST['mobile'], $_POST['address']])
+            'field' => "`orderdetail_id`, `datetime`, `orderdetail_status_id`, `member_id`, `fullname`, `tel`, `address`, `payment_date`",
+            'value' => Model::getQueryString([$maxOrderDetailId, $dateTime, 1, $_SESSION[AUTH_ID], $_POST['name'], $_POST['mobile'], $_POST['address'], ''])
         ], false);
         if ($detailAdd) {
             foreach ($_SESSION['cart'] as $productId => $productIdArr) {

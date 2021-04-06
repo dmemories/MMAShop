@@ -16,8 +16,10 @@
 	define('PATH_CSS', PATH_PUBLIC . 'css/');
     define('PATH_JS', PATH_PUBLIC . 'js/');
     define('PATH_IMG',	 PATH_PUBLIC . 'images/');
-    define('PATH_SHOP',	 PATH_IMG . 'shop/');
+    define('PATH_ICON',	 PATH_IMG . 'icon/');
     define('PATH_PAYMENT',	 PATH_IMG . 'payment/');
+    define('PATH_SHOP',	 PATH_IMG . 'shop/');
+    
 
 	// Database
 	define('DB_TYPE', 'mysql');
@@ -31,6 +33,7 @@
     define('AUTH_NAME', 'name');
     define('AUTH_EMAIL', 'email');
     define('AUTH_TYPE', 'memberType');
+    define('AUTH_LV', 'level');
 
     // Order Status Group
     define('ORDER_STATUS_EMPTY', 1);

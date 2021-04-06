@@ -10,6 +10,10 @@
             return !empty($_SESSION[AUTH_NAME]) && !empty($_SESSION[AUTH_EMAIL]);
         }
 
+        public static function admin() {
+            return ($_SESSION[AUTH_LV] == 99);
+        }
+
         public static function getName() {
             return $_SESSION[AUTH_NAME];
         }
@@ -31,6 +35,7 @@
                 $_SESSION[AUTH_NAME] = $result['name'];
                 $_SESSION[AUTH_EMAIL] = $result['email'];
                 $_SESSION[AUTH_TYPE] = MEM_DEFAULT;
+                $_SESSION[AUTH_LV] = $memData['member_level'];
                 return true;
             }
         }
@@ -80,6 +85,7 @@
             $_SESSION[AUTH_NAME] = $memData['fullname'];
             $_SESSION[AUTH_EMAIL] = $memData['email'];
             $_SESSION[AUTH_TYPE] = MEM_GOOGLE;
+            $_SESSION[AUTH_LV] = $memData['member_level'];
             return ['wantEdit' => $wantEditData];
         }
 
@@ -88,6 +94,7 @@
                 unset($_SESSION[AUTH_NAME]);
                 unset($_SESSION[AUTH_EMAIL]);
                 unset($_SESSION[AUTH_TYPE]);
+                unset($_SESSION[AUTH_LV]);
                 GoogleAPI::$client->revokeToken();
             }
         }

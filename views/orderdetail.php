@@ -69,6 +69,15 @@
                                 </td>
                                 <td colspan="2" align="center">'. date("d / M / Y", strtotime($this->orderDate)) . '</th>
                             </tr>';
+                            echo '<tr style="text-align: center; background-color:#D3D3D3">
+                                
+                                <td colspan="4" align="center">
+                                    <x style="font-weight: bold;">Shipping Address</x><br/><br/>
+                                    '. $this->name .'<br/>
+                                    '. $this->tel .'<br/>
+                                    '. $this->address .'<br/>
+                                </td>
+                            </tr>';
                         ?>
                         </tbody>
                     </table>
@@ -88,7 +97,6 @@
                                 else {
                                     echo "<img src=\"". $this->paymentImg ."\" style=\"width:240px;\"/><br/>";
                                 }
-                            
                             ?>
                         </li>
                     </ul>

@@ -34,7 +34,7 @@
                     $check = getimagesize($_FILES["paymentfile"]["tmp_name"]);
                     if ($check == false) $errReason = "File is not an image.";
                     else if ($_FILES["paymentfile"]["size"] > 10485760) $errReason = "Sorry, your file is too large.";
-                    else if ($orderDetail['orderdetail_status_id'] != 1) $errReason = "This order has been completed already.";
+                    else if ($orderDetail['orderdetail_status_id'] == 3) $errReason = "This order has been completed already.";
                     else if ($imageFileType != $allowType[0] && $imageFileType != $allowType[1] && $imageFileType != $allowType[2]) $errReason = "Sorry, only JPG, JPEG, PNG files are allowed.";
                     else {
                         foreach ($allowType as $fileType) {
@@ -48,11 +48,12 @@
                 $this->setView('order');
                 $this->view->orderData = [];
                 if (empty($errReason)) {
-                   /*  OrderDetail::update([
-                        'set' => "orderdetail_status_id=:xxx",
-                        'bind' => [':xxx' => '2'],
-                        'where' => "orderdetail_id = " . $orderDetailId
-                    ]); */
+                    date_default_timezone_set("Asia/Bangkok");
+                    OrderDetail::update([
+                        'set' => "orderdetail_status_id=:xxx, payment_date=:yyy",
+                        'bind' => [':xxx' => '2', ':yyy' => date('Y-m-d H:i:s')],
+                        'where' => "orderdetail_id = " . $orderDetailId . " AND orderdetail_status_id <> 3"
+                    ]);
                     $this->view->setAlertHref("Upload Successfully !", "", "./" . $orderDetailId);
                 }
                 else
@@ -91,6 +92,9 @@
                         $this->setView('orderdetail');
                         $this->view->orderId = $orderDetailId;
                         $this->view->orderDate = $orderDetail[0]['datetime'];
+                        $this->view->name = $orderDetail[0]['fullname'];
+                        $this->view->tel = $orderDetail[0]['tel'];
+                        $this->view->address = $orderDetail[0]['address'];
                         $this->view->isComplete = $orderDetail[0]['orderdetail_status_id'];
                         $orderStatus = OrderDetail::get([
                             "where" => "`orderdetail_id` = " . $orderDetailId,
