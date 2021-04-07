@@ -48,11 +48,11 @@
                                         </select>
                                     </td>
                                     <td class="">
-                                        <a href="5678"><img class="mycartitem" src="'. PATH_ICON . "view.png" .'" style="cursor: pointer; width: 50px; height: 50px;"></a>
+                                        <a href="order/'. $val['id'] .'" target="_blank"><img class="mycartitem" src="'. PATH_ICON . "view.png" .'" style="cursor: pointer; width: 50px; height: 50px;"></a>
                                     </td>
                                     <td class="">
                                         <div style="display: flex;justify-content: center;">
-                                        <a href="5678"><img class="mycartitem" src="'. PATH_ICON . "save.png" .'" style="cursor: pointer; width: 50px; height: 50px;"></a>
+                                        <img onclick="saveOrderId('. $val['id'] .')" class="mycartitem" src="'. PATH_ICON . "save.png" .'" style="cursor: pointer; width: 50px; height: 50px;">
                                         </div>
                                     </td>
                                 </tr>';
@@ -67,3 +67,46 @@
         </div>
     </div>
 </section>
+
+<script>
+    
+    function saveOrderId(id) {
+        let statusId = document.getElementById("status_" + id).value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (this.responseText == 1) {
+                    Swal.fire({
+                        title: "Save Successfully",
+                        text: "",
+                        icon: "success",
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            //location.reload();
+                        }
+                    })
+                }
+                else {
+                    console.log(this.responseText);
+                    Swal.fire({
+                        title: "Save Error",
+                        text: "",
+                        icon: "error",
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            //location.reload();
+                        }
+                    })
+                }
+            }
+        };
+        xhttp.open("POST", <?="\"" . PATH_SERVICE . "admin_orderedit.php\"";?>, true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("id=" + id + "&statusid=" + statusId);
+    }
+
+</script>

@@ -83,9 +83,9 @@
                 else $this->setView('login');
             }
             else {
-                if (Auth::check()) { 
+                if (Auth::check()) {
                     $orderDetail = OrderDetail::get([
-                        'where' => "orderdetail_id = " . $orderDetailId . " AND member_id = " . $_SESSION[AUTH_ID]
+                        'where' => "orderdetail_id = " . $orderDetailId . (Auth::admin() ? "" : " AND member_id = " . $_SESSION[AUTH_ID])
                     ]);
                     // Owner order id
                     if (sizeof($orderDetail) === 1) {
