@@ -47,7 +47,7 @@
         <?php include PATH_MVIEW . 'header_cart.php'; ?>
     </div>
     <div class="offcanvas__logo">
-        <a href="./index.php"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+        <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__option">
@@ -66,13 +66,13 @@
                             <?php include PATH_MVIEW . 'header_member.php'; ?>
                         </div>
                         <div class="header__logo">
-                            <a href="./index.php"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+                            <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">
                                 <a href="<?=PATH_ROOT . "shop";?>" class="search-switch"><img src="<?=PATH_IMG;?>icon/search.png" alt=""></a>
                                 <a href="https://www.facebook.com/m.maisreal" target="_blank"><img src="<?=PATH_IMG;?>icon/facebook.png" alt="" class="myicon"></a>
-                                <a href="#"><img src="<?=PATH_IMG;?>icon/shopee.png" alt="" class="myicon"></a>
+                                <a href="https://shopee.co.th/m_maa24?fbclid=IwAR2trK5nAEI-PIAkK1U23bqDKFZQeYDOkPlZd4i6J3K9BI3usS6hPU-6poY" target="_blank"><img src="<?=PATH_IMG;?>icon/shopee.png" alt="" class="myicon"></a>
                             </div>
                             <?php include PATH_MVIEW . 'header_cart.php'; ?>
                         </div>

@@ -10,6 +10,7 @@
         public function index() {
             if (Auth::admin()) { 
                 $this->setView('admin_order');
+                $this->view->orderData = [];
                 
                 $orderStatus = OrderDetailStatus::get();
                 $statusOption = "";

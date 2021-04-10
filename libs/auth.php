@@ -11,7 +11,7 @@
         }
 
         public static function admin() {
-            return ($_SESSION[AUTH_LV] == 99);
+            return (isset($_SESSION[AUTH_LV]) && ($_SESSION[AUTH_LV] == 99));
         }
 
         public static function getName() {
@@ -35,7 +35,7 @@
                 $_SESSION[AUTH_NAME] = $result['name'];
                 $_SESSION[AUTH_EMAIL] = $result['email'];
                 $_SESSION[AUTH_TYPE] = MEM_DEFAULT;
-                $_SESSION[AUTH_LV] = $memData['member_level'];
+                $_SESSION[AUTH_LV] = $result['member_level'];
                 return true;
             }
         }

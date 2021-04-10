@@ -105,7 +105,7 @@
                             $totalPriceAll = 0;
                             foreach ($cartDataArr as $cartData) {
                                 $total = ($cartData['price'] * $cartData['amount']);
-                                $totalPriceAll += $total;
+                                if ($totalPriceAll == 0)$totalPriceAll += $total;
                                 $linkItem = "product/" . $cartData['productId'];
                                 echo "
                                     <script>
@@ -182,7 +182,7 @@
                     <h6>Cart total</h6>
                     <ul>
                         <!--<li>Subtotal <span>$ 169.50</span></li>-->
-                        <li>Total <span>฿ <?=$totalPriceAll;?></span></li>
+                        <li>Total <span>฿ <?=number_format($totalPriceAll);?></span></li>
                     </ul>
                     <a onclick="checkout();" class="primary-btn checkout-btn">Proceed to checkout</a>
                 </div>

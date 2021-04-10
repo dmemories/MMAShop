@@ -10,7 +10,7 @@
     class OrderController extends Controller {
         
         public function __construct() {
-            //$this->setView('order');
+            $this->paymentAllowType = ["jpg", "png", "jpeg"];
         }
 
         public function index($orderDetailId = 0) {
@@ -29,15 +29,15 @@
                     $errReason = (string) null;
                     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
                     $imgShaName = hash('sha1', ($_SESSION[AUTH_ID] . $orderDetailId));
-                    $allowType = ["jpg", "png", "jpeg"];
+                    
 
                     $check = getimagesize($_FILES["paymentfile"]["tmp_name"]);
                     if ($check == false) $errReason = "File is not an image.";
                     else if ($_FILES["paymentfile"]["size"] > 10485760) $errReason = "Sorry, your file is too large.";
                     else if ($orderDetail['orderdetail_status_id'] == 3) $errReason = "This order has been completed already.";
-                    else if ($imageFileType != $allowType[0] && $imageFileType != $allowType[1] && $imageFileType != $allowType[2]) $errReason = "Sorry, only JPG, JPEG, PNG files are allowed.";
+                    else if ($imageFileType != $this->paymentAllowType[0] && $imageFileType != $this->paymentAllowType[1] && $imageFileType != $this->paymentAllowType[2]) $errReason = "Sorry, only JPG, JPEG, PNG files are allowed.";
                     else {
-                        foreach ($allowType as $fileType) {
+                        foreach ($this->paymentAllowType as $fileType) {
                             if (file_exists($target_dir . $imgShaName . "." . $fileType))
                                 unlink($target_dir . $imgShaName . "." . $fileType);
                         }
@@ -63,7 +63,7 @@
                 if (Auth::check()) { 
                     $this->setView('order');
                     $this->view->orderData = [];
-                    $orderDetailArr = OrderDetail::get([ 'where' => "member_id = " . $_SESSION[AUTH_ID] ]);
+                    $orderDetailArr = OrderDetail::get(['where' => "member_id = " . $_SESSION[AUTH_ID]]);
                     foreach ($orderDetailArr as $orderDetail) {
                         //$total = 0;
                         $productOrderArr = ProductOrder::get([ 'where' => "orderdetail_id = " . $orderDetail['orderdetail_id'] ]);
@@ -96,11 +96,11 @@
                         $this->view->tel = $orderDetail[0]['tel'];
                         $this->view->address = $orderDetail[0]['address'];
                         $this->view->isComplete = $orderDetail[0]['orderdetail_status_id'];
-                        $orderStatus = OrderDetail::get([
+                        $orderDetail = OrderDetail::get([
                             "where" => "`orderdetail_id` = " . $orderDetailId,
                             'join' => ['orderdetail_status, orderdetail_status_id']
                         ])[0];
-                        $this->view->status = $orderStatus['status_name'];
+                        $this->view->status = $orderDetail['status_name'];
 
                         $total = 0;
                         $productOrderArr = ProductOrder::get(['where' => "orderdetail_id = " . $orderDetailId]);
@@ -121,13 +121,18 @@
                         
                         // Set img
                         $localPaymentPath = "./public/images/payment/";
-                        $imgName = hash('sha1', $_SESSION[AUTH_ID] . $orderDetailId);
-
-                        if (file_exists($localPaymentPath . $imgName . ".jpg"))
-                            $this->view->paymentImg = PATH_PAYMENT . $imgName . ".jpg";
-                        else if (file_exists($localPaymentPath . $imgName . ".png"))
-                            $this->view->paymentImg = PATH_PAYMENT . $imgName . ".png";
+                        if (Auth::admin())
+                            $imgName = hash('sha1', $orderDetail['member_id'] . $orderDetailId);
                         else
+                            $imgName = hash('sha1', $_SESSION[AUTH_ID] . $orderDetailId);
+
+                        foreach ($this->paymentAllowType as $imgType) {
+                            if (file_exists($localPaymentPath . $imgName . "." . $imgType)) {
+                                $this->view->paymentImg = PATH_PAYMENT . $imgName . "." . $imgType;
+                                break;
+                            }
+                        }
+                        if (empty($this->view->paymentImg))
                             $this->view->paymentImg = PATH_PAYMENT . "noimg.png";
                     }
                     else {

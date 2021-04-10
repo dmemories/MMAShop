@@ -39,7 +39,7 @@
             else {
                 $loginResult = Auth::login($_POST['email'], $_POST['password']);
                 if ($loginResult === true) {
-                    $this->view->setAlertRefresh("Welcome " . Auth::getName(), "Login Successfully !");
+                    $this->view->setAlertHref("Welcome " . Auth::getName(), "Login Successfully !", PATH_ROOT . "shop");
                 }
                 else {
                     if (isset($loginResult['error'])) {

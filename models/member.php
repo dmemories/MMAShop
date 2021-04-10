@@ -4,7 +4,7 @@
         public static $table = "member";
 
         public static function login($email, $password) {
-            if (!preg_match("/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/i", $email)) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return ['warning' => "Invalid email format !"];
             }
             else if (!preg_match("/^[a-z0-9]{4,20}+$/i", $password)) {
@@ -19,7 +19,7 @@
             ]);
             switch (sizeof($result)) {
                 case 0: return ['warning' => "Invalid email or password !"];
-                case 1: return ['name' => $result[0]['fullname'], 'email' => $result[0]['email'], 'member_id' => $result[0]['member_id']];
+                case 1: return ['name' => $result[0]['fullname'], 'email' => $result[0]['email'], 'member_id' => $result[0]['member_id'], 'member_level' => $result[0]['member_level']];
                 case 2: return ['error' => "login error #01"];
                 default : return ['error' => "login error #02"];
             }
@@ -46,7 +46,8 @@
                 else { $$key = $data[$key]; }
             }
             
-            //if (!preg_match("/^\w+@[a-z_]+?\.[a-zA-Z]{2,3}$/i", $email)) {
+            
+            //if (!strpos($email, "@") || !strpos($email, ".")) {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return ['warning' => "Invalid email format !"];
             }

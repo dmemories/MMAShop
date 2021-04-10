@@ -45,6 +45,6 @@
     define('MEM_GOOGLE', 2);
 
     // Shop
-    define('SHOP_MAXBUY', 10);
+    define('SHOP_MAXBUY', 50);
 
 ?>

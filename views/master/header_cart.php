@@ -14,5 +14,5 @@
 ?>
 <div class="header__top__right__cart">
     <a href="<?=PATH_ROOT . "cart";?>"><img src="<?=PATH_IMG;?>icon/cart.png" alt="" style="width: 23px; height: 27px;"> <!--<span>0</span>--></a>
-    <div class="cart__price">Cart: <span>$<?=$totalPriceAll;?></span></div>
+    <div class="cart__price">Cart: <span>$<?=number_format($totalPriceAll);?></span></div>
 </div>
