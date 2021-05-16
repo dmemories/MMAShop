@@ -41,26 +41,37 @@
                   <label for="password">Password</label>
                   <input type="password" class="form-control" name="password">
                 </div>
-                
-                <div class="d-sm-flex mb-5 align-items-center">
-                  <!--<label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
+                <br/>
+               <!--  <div class="d-sm-flex mb-5 align-items-center">
+                  <label class="control control--checkbox mb-3 mb-sm-0"><span class="caption">Remember me</span>
                     <input type="checkbox" checked="checked"/>
                     <div class="control__indicator"></div>
                   </label>
-                  -->
-                  <span class="ml-auto"><a href="#" class="forgot-pass myFont">Forgot Password</a></span> 
+                  
+                  <span class="ml-auto"><a href="#" class="forgot-pass myFont">Forgot Password</a></span>
                 </div>
-
-                <input type="submit" value="Log In" class="btn btn-block py-2 btn-primary">
-
+ -->
+                <div style="display: flex; align-items: center; justify-content: center; text-align: center">
+                  <a href="#" class="btn btn-block py-2 btn-mma" style="border-radius: 20px;">
+                    Login
+                  </a>
+                </div>
+                
                 <span class="text-center my-3 d-block text-white">or</span>
                 
                 
-                <div class="">
-                  <a href="#" class="btn btn-block py-2 btn-facebook">
-                    <span class="icon-facebook mr-3"></span> Login with facebook
+                <div style="display: flex; margin: auto; text-align: center; align-items: center; justify-content: center; margin-bottom: 20px;">
+                  <img src='<?=PATH_ICON . "btn_fb.png"?>' style="width: 40px; height: 40px; margin-right: 20px;"/>
+                  <a href="#" class="btn btn-block py-2 btn-facebook mybtn">
+                    Login with facebook
                   </a>
-                  <a href="<?=GoogleAPI::$client->createAuthUrl();?>" class="btn btn-block py-2 btn-google"><span class="icon-google mr-3"></span> Login with Google</a>
+                </div>
+                
+                <div style="display: flex; margin: auto; text-align: center; align-items: center; justify-content: center;">
+                  <img src='<?=PATH_ICON . "btn_gg.png"?>' style="width: 40px; height: 40px; margin-right: 20px;"/>
+                  <a href="<?=GoogleAPI::$client->createAuthUrl();?>" class="btn btn-block py-2 btn-google mybtn">
+                    Login with Google
+                  </a>
                 </div>
               </form>
             </div>

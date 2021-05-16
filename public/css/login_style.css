@@ -162,8 +162,11 @@ h2 {
   text-decoration: none !important; }
   .btn.btn-facebook {
     display: block;
-    background: #3b5998;
+    background-color: rgba(194, 194, 194, 0.8);
     color: #fff; }
   .btn.btn-google {
-    background: #ea4335;
+    background-color: rgba(194, 194, 194, 0.8);
+    color: #fff; }
+  .btn.btn-mma {
+    background-color: rgba(48, 48, 48, 0.9);
     color: #fff; }

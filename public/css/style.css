@@ -25,6 +25,11 @@
 10.  Footer Style
 -------------------------------------------------------------------*/
 
+.mybtn {
+  border-radius: 20px;
+  width: 70%;
+}
+
 .myicon {
   width: 30px;
   height: 30px;
@@ -571,7 +576,7 @@ ol {
 
 .hero__text {
   text-align: center;
-  background: #ffffff;
+  /* background: #ffffff; */
   padding: 65px 70px 70px;
   position: relative;
 }
@@ -587,7 +592,7 @@ ol {
 }
 .hero__text h2 {
   font-size: 46px;
-  color: #111111;
+  color: #FFF;
   line-height: 60px;
   font-weight: 700;
   font-style: italic;

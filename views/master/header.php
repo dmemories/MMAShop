@@ -47,7 +47,7 @@
         <?php include PATH_MVIEW . 'header_cart.php'; ?>
     </div>
     <div class="offcanvas__logo">
-        <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+        <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" style="width: 100px;" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__option">
@@ -65,8 +65,8 @@
                         <div class="header__top__left">
                             <?php include PATH_MVIEW . 'header_member.php'; ?>
                         </div>
-                        <div class="header__logo">
-                            <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" alt=""></a>
+                        <div class="header__logo" style="padding-top: 10px">
+                            <a href="<?=(Auth::admin() ? "adminorder" : "home");?>"><img src="<?=PATH_IMG;?>logo.png" style="width: 100px;" alt=""></a>
                         </div>
                         <div class="header__top__right">
                             <div class="header__top__right__links">
