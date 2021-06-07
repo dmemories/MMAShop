@@ -52,9 +52,7 @@
                 </div>
  -->
                 <div style="display: flex; align-items: center; justify-content: center; text-align: center">
-                  <a href="#" class="btn btn-block py-2 btn-mma" style="border-radius: 20px;">
-                    Login
-                  </a>
+                  <input type="submit" class="btn btn-block py-2 btn-mma" style="border-radius: 20px;" value="Login">
                 </div>
                 
                 <span class="text-center my-3 d-block text-white">or</span>
